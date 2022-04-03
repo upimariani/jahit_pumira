@@ -24,49 +24,46 @@
                         <table class="table datatable">
                             <thead>
                                 <tr>
-                                    <th scope="col">#</th>
-                                    <th scope="col">Name</th>
-                                    <th scope="col">Position</th>
-                                    <th scope="col">Age</th>
-                                    <th scope="col">Start Date</th>
+                                    <th class="text-center" scope="col">#</th>
+                                    <th class="text-center" scope="col">Nama User</th>
+                                    <th class="text-center" scope="col">Alamat</th>
+                                    <th class="text-center" scope="col">No Telepon</th>
+                                    <th class="text-center" scope="col">Username</th>
+                                    <th class="text-center" scope="col">Password</th>
+                                    <th class="text-center" scope="col">Level User</th>
+                                    <th class="text-center" scope="col">Action</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
-                                    <th scope="row">1</th>
-                                    <td>Brandon Jacob</td>
-                                    <td>Designer</td>
-                                    <td>28</td>
-                                    <td>2016-05-25</td>
-                                </tr>
-                                <tr>
-                                    <th scope="row">2</th>
-                                    <td>Bridie Kessler</td>
-                                    <td>Developer</td>
-                                    <td>35</td>
-                                    <td>2014-12-05</td>
-                                </tr>
-                                <tr>
-                                    <th scope="row">3</th>
-                                    <td>Ashleigh Langosh</td>
-                                    <td>Finance</td>
-                                    <td>45</td>
-                                    <td>2011-08-12</td>
-                                </tr>
-                                <tr>
-                                    <th scope="row">4</th>
-                                    <td>Angus Grady</td>
-                                    <td>HR</td>
-                                    <td>34</td>
-                                    <td>2012-06-11</td>
-                                </tr>
-                                <tr>
-                                    <th scope="row">5</th>
-                                    <td>Raheem Lehner</td>
-                                    <td>Dynamic Division Officer</td>
-                                    <td>47</td>
-                                    <td>2011-04-19</td>
-                                </tr>
+                                <?php
+                                $no = 1;
+                                foreach ($user as $key => $value) {
+                                ?>
+                                    <tr>
+                                        <th scope="row"><?= $no++ ?></th>
+                                        <td><?= $value->nama_user ?></td>
+                                        <td><?= $value->alamat_user ?></td>
+                                        <td><?= $value->no_hp ?></td>
+                                        <td><?= $value->username ?></td>
+                                        <td><?= $value->password ?></td>
+                                        <td class="text-center"><?php
+                                                                if ($value->level_user == '1') {
+                                                                ?>
+                                                <span class="badge bg-success">Admin</span>
+                                            <?php
+                                                                } else {
+                                            ?>
+                                                <span class="badge bg-warning">Pemilik</span>
+                                            <?php
+                                                                }
+                                            ?>
+                                        </td>
+                                        <td></td>
+                                    </tr>
+                                <?php
+                                }
+                                ?>
+
                             </tbody>
                         </table>
                         <!-- End Table with stripped rows -->
