@@ -55,6 +55,19 @@ class mKelolaDataMaster extends CI_Model
         $this->db->where('id_kategori', $id);
         $this->db->update('kategori', $data);
     }
+
+    //kelola data produk
+    public function select_produk()
+    {
+        $this->db->select('*');
+        $this->db->from('produk');
+        $this->db->join('kategori', 'produk.id_kategori = kategori.id_kategori', 'left');
+        return $this->db->get()->result();
+    }
+    public function insert_produk($data)
+    {
+        $this->db->insert('produk', $data);
+    }
 }
                         
 /* End of file KelolaDataMaster.php */

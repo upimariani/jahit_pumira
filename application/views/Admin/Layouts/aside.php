@@ -27,7 +27,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="forms-editors.html">
+                    <a href="<?= base_url('Admin/KelolaDataMaster/produk') ?>">
                         <i class="bi bi-circle"></i><span>Produk</span>
                     </a>
                 </li>

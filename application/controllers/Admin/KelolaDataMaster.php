@@ -130,6 +130,58 @@ class KelolaDataMaster extends CI_Controller
         $this->session->set_flashdata('success', 'Data Kategori Produk Berhasil Dihapus!');
         redirect('Admin/KelolaDataMaster/kategori');
     }
+
+    //kelola data produk
+    public function produk()
+    {
+        $this->form_validation->set_rules('kategori', 'Kategori', 'required');
+        $this->form_validation->set_rules('nama', 'Nama Produk', 'required');
+        $this->form_validation->set_rules('deskripsi', 'Deskripsi', 'required');
+
+
+        if ($this->form_validation->run() == FALSE) {
+            $data = array(
+                'produk' => $this->mKelolaDataMaster->select_produk(),
+                'kategori' => $this->mKelolaDataMaster->select_kategori(),
+
+            );
+            $this->load->view('Admin/layouts/head');
+            $this->load->view('Admin/layouts/header');
+            $this->load->view('Admin/layouts/aside');
+            $this->load->view('Admin/Produk/produk', $data);
+            $this->load->view('Admin/layouts/footer');
+        } else {
+            $config['upload_path']          = './asset/foto-produk';
+            $config['allowed_types']        = 'gif|jpg|png';
+            $config['max_size']             = 5000;
+
+            $this->load->library('upload', $config);
+
+            if (!$this->upload->do_upload('gambar')) {
+                $data = array(
+                    'produk' => $this->mKelolaDataMaster->select_produk(),
+                    'kategori' => $this->mKelolaDataMaster->select_kategori(),
+                    'error' => $this->upload->display_errors()
+                );
+                $this->load->view('Admin/layouts/head');
+                $this->load->view('Admin/layouts/header');
+                $this->load->view('Admin/layouts/aside');
+                $this->load->view('Admin/Produk/produk', $data);
+                $this->load->view('Admin/layouts/footer');
+            } else {
+                $upload_data =  $this->upload->data();
+                $data = array(
+                    'id_kategori' => $this->input->post('kategori'),
+                    'nama_produk' => $this->input->post('nama'),
+                    'deskripsi' => $this->input->post('deskripsi'),
+                    'gambar' => $upload_data['file_name'],
+                );
+                $this->mKelolaDataMaster->insert_produk($data);
+                $this->session->set_flashdata('success', 'Data Produk Berhasil Disimpan!');
+                redirect('Admin/KelolaDataMaster/produk', 'refresh');
+            }
+        }
+    }
 }
         
     /* End of file  KelolaDataMaster.php */
