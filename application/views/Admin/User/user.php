@@ -9,6 +9,19 @@
                 <li class="breadcrumb-item active">USER</li>
             </ol>
         </nav>
+
+        <?php
+        if ($this->session->userdata('success')) {
+        ?>
+            <div class="alert alert-success alert-dismissible fade show" role="alert">
+                <i class="bi bi-check-circle me-1"></i>
+                <?= $this->session->userdata('success') ?>
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+        <?php
+        }
+        ?>
+
     </div><!-- End Page Title -->
 
     <section class="section">
@@ -58,7 +71,10 @@
                                                                 }
                                             ?>
                                         </td>
-                                        <td></td>
+                                        <td class="text-center">
+                                            <a href="<?= base_url('Admin/KelolaDataMaster/delete_user/' . $value->id_user) ?>" class="btn btn-danger"><i class="bi bi-trash"></i></a>
+                                            <a href="<?= base_url('Admin/KelolaDataMaster/edit_user/' . $value->id_user) ?>" class="btn btn-success"><i class="bi bi-pencil-square"></i></a>
+                                        </td>
                                     </tr>
                                 <?php
                                 }

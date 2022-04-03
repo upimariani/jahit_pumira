@@ -17,12 +17,12 @@
             </a>
             <ul id="forms-nav" class="nav-content collapse show" data-bs-parent="#sidebar-nav">
                 <li>
-                    <a href="forms-elements.html" class="active">
+                    <a href="<?= base_url('Admin/KelolaDataMaster/user') ?>" class="active">
                         <i class="bi bi-circle"></i><span>User</span>
                     </a>
                 </li>
                 <li>
-                    <a href="forms-layouts.html">
+                    <a href="<?= base_url('Admin/KelolaDataMaster/kategori') ?>">
                         <i class="bi bi-circle"></i><span>Kategori Produk</span>
                     </a>
                 </li>
