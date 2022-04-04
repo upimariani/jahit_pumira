@@ -22,6 +22,7 @@
         }
         ?>
 
+
     </div><!-- End Page Title -->
     <section class="section">
         <div class="row">
@@ -40,10 +41,7 @@
                                     </button>
                                 </h2>
                                 <div id="collapseOne" class="accordion-collapse collapse show " aria-labelledby="headingOne" data-bs-parent="#accordionExample">
-
                                     <div class="accordion-body">
-
-
                                         <?php echo form_open_multipart('Admin/KelolaDataMaster/produk'); ?>
                                         <div class="row">
                                             <div class="col-lg-6">
@@ -94,7 +92,7 @@
                                                 <div class="row mb-3 mt-5">
                                                     <label for="inputPassword" class="col-sm-5 col-form-label">Gambar</label>
                                                     <div class="col-sm-10">
-                                                        <input type="file" name="gambar" class="form-control" required>
+                                                        <input type="file" name="gambar" class="form-control">
                                                         <?= form_error('gambar', '<small class="text-danger pl-3">', '</small>'); ?>
                                                     </div>
                                                 </div>
@@ -147,8 +145,8 @@
                                                                 <td class="text-center"><?= $value->deskripsi ?></td>
                                                                 <td class="text-center">
                                                                     <a href="<?= base_url('Admin/KelolaDataMaster/delete_produk/' . $value->id_produk) ?>" class="btn btn-danger"><i class="bi bi-trash"></i></a>
-                                                                    <a href="<?= base_url('Admin/KelolaDataMaster/edit_produk/' . $value->id_produk) ?>" class="btn btn-success"><i class="bi bi-pencil-square"></i></a>
-                                                                    <a href="<?= base_url('Admin/KelolaDataMaster/edit_produk/' . $value->id_produk) ?>" class="btn btn-warning"><i class="bi bi-list-ul"></i></a>
+                                                                    <a href="<?= base_url('Admin/KelolaDataMaster/update_produk/' . $value->id_produk) ?>" class="btn btn-success"><i class="bi bi-pencil-square"></i></a>
+                                                                    <a href="<?= base_url('Admin/KelolaDataMaster/size/' . $value->id_produk) ?>" class="btn btn-warning"><i class="bi bi-list-ul"></i></a>
                                                                 </td>
                                                             </tr>
                                                         <?php

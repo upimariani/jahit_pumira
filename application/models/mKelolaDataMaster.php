@@ -68,6 +68,57 @@ class mKelolaDataMaster extends CI_Model
     {
         $this->db->insert('produk', $data);
     }
+    public function edit_produk($id)
+    {
+        $this->db->select('*');
+        $this->db->from('produk');
+        $this->db->join('kategori', 'produk.id_kategori = kategori.id_kategori', 'left');
+        $this->db->where('id_produk', $id);
+        return $this->db->get()->row();
+    }
+    public function update_produk($id, $data)
+    {
+        $this->db->where('id_produk', $id);
+        $this->db->update('produk', $data);
+    }
+    public function delete_produk($id)
+    {
+        $this->db->where('id_produk', $id);
+        $this->db->delete('produk');
+    }
+    //kelola data size
+    public function size($id)
+    {
+        $this->db->select('*');
+        $this->db->from('size');
+        $this->db->join('produk', 'size.id_produk = produk.id_produk', 'left');
+        $this->db->where('produk.id_produk', $id);
+        $data['size'] = $this->db->get()->result();
+        $data['produk'] = $this->db->get_where('produk', array('id_produk' => $id))->row();
+        return $data;
+    }
+    public function insert_size($data)
+    {
+        $this->db->insert('size', $data);
+    }
+    public function delete_size($id)
+    {
+        $this->db->where('id_size', $id);
+        $this->db->delete('size');
+    }
+    public function edit_size($id)
+    {
+        $this->db->select('*');
+        $this->db->from('size');
+        $this->db->join('produk', 'size.id_produk = produk.id_produk', 'left');
+        $this->db->where('size.id_size', $id);
+        return $this->db->get()->row();
+    }
+    public function update_size($id, $data)
+    {
+        $this->db->where('id_size', $id);
+        $this->db->update('size', $data);
+    }
 }
                         
 /* End of file KelolaDataMaster.php */
