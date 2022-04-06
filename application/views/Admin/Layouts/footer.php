@@ -1,14 +1,10 @@
 <!-- ======= Footer ======= -->
 <footer id="footer" class="footer">
     <div class="copyright">
-        &copy; Copyright <strong><span>NiceAdmin</span></strong>. All Rights Reserved
+        JAHIT PUMIRA
     </div>
     <div class="credits">
-        <!-- All the links in the footer should remain intact. -->
-        <!-- You can delete the links only if you purchased the pro version. -->
-        <!-- Licensing information: https://bootstrapmade.com/license/ -->
-        <!-- Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/nice-admin-bootstrap-admin-html-template/ -->
-        Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a>
+        ADMIN
     </div>
 </footer><!-- End Footer -->
 
@@ -25,12 +21,40 @@
 
 <!-- Template Main JS File -->
 <script src="<?= base_url('asset/NiceAdmin/') ?>assets/js/main.js"></script>
+<script src="<?= base_url('asset/jquery.min.js') ?>"></script>
 <script>
     window.setTimeout(function() {
         $(".alert").fadeTo(500, 0).slideUp(500, function() {
             $(this).remove();
         });
     }, 3000)
+</script>
+<script>
+    $("#hide").click(function() {
+        $(".file-data-diskon").slideUp("slow");
+    });
+    $('.diskon tbody').on('click', 'button', function() {
+        console.log($(this).attr("data-produk"));
+        $.ajax({
+            url: '<?= base_url() ?>Admin/KelolaDataMaster/produk_diskon/' + $(this).attr("data-produk"),
+            dataType: 'json',
+            type: 'get',
+            contentType: 'application/x-www-form-urlencoded',
+            data: $(this).serialize(),
+            success: function(data, textStatus, jQxhr) {
+                $('#list-diskon').html("");
+                console.log(data.diskon.length);
+                for (var i = 0; i < data.diskon.length; i++) {
+                    console.log(data.diskon.length);
+                    $('#list-diskon').append("<tr><td>" + data.diskon[i].nama_produk + "</td><td> Size <strong>" + data.diskon[i].size + "</strong></td><td> Dari Harga Rp. " + data.diskon[i].harga + "</td><td> Diskon : " + data.diskon[i].besar_diskon + "% => Rp. <strong>" + parseInt(data.diskon[i].harga - (data.diskon[i].besar_diskon / 100 * data.diskon[i].harga)) + " </strong></td></tr>");
+                }
+                $('.file-data-diskon').slideDown('slow');
+            },
+            error: function(jqXhr, textStatus, errorThrown) {
+                console.log(errorThrown);
+            }
+        });
+    });
 </script>
 </body>
 

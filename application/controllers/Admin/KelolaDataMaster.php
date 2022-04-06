@@ -176,6 +176,17 @@ class KelolaDataMaster extends CI_Controller
                     'gambar' => $upload_data['file_name'],
                 );
                 $this->mKelolaDataMaster->insert_produk($data);
+
+                //menambahkan diskon default yaitu 0
+                $id = $this->mKelolaDataMaster->id_produk();
+                $a = $id->id;
+                $diskon = array(
+                    'id_produk' => $a,
+                    'nama_diskon' => '0',
+                    'besar_diskon' => '0',
+                    'tgl_selesai' => '0'
+                );
+                $this->mKelolaDataMaster->data_diskon($diskon);
                 $this->session->set_flashdata('success', 'Data Produk Berhasil Disimpan!');
                 redirect('Admin/KelolaDataMaster/produk', 'refresh');
             }
@@ -241,6 +252,7 @@ class KelolaDataMaster extends CI_Controller
     public function delete_produk($id)
     {
         $this->mKelolaDataMaster->delete_produk($id);
+        $this->mKelolaDataMaster->del_size_all($id);
         $this->session->set_flashdata('success', 'Data Produk Berhasil Dihapus!!!');
         redirect('Admin/KelolaDataMaster/produk');
     }
@@ -278,6 +290,72 @@ class KelolaDataMaster extends CI_Controller
         $this->mKelolaDataMaster->delete_size($id);
         $this->session->set_flashdata('success', 'Data Size Berhasil Dihapus!');
         redirect('Admin/KelolaDataMaster/size/' . $id_produk);
+    }
+    public function edit_size($id, $id_produk)
+    {
+        $this->form_validation->set_rules('size', 'Size', 'required');
+        $this->form_validation->set_rules('stok', 'Stok', 'required');
+        $this->form_validation->set_rules('harga', 'Harga', 'required');
+
+
+        if ($this->form_validation->run() == FALSE) {
+            $data = array(
+                'size' => $this->mKelolaDataMaster->edit_size($id)
+            );
+            $this->load->view('Admin/layouts/head');
+            $this->load->view('Admin/layouts/header');
+            $this->load->view('Admin/layouts/aside');
+            $this->load->view('Admin/Produk/update_size', $data);
+            $this->load->view('Admin/layouts/footer');
+        } else {
+            $data = array(
+                'size' => $this->input->post('size'),
+                'stok' => $this->input->post('stok'),
+                'harga' => $this->input->post('harga'),
+            );
+            $this->mKelolaDataMaster->update_size($id, $data);
+            $this->session->set_flashdata('success', 'Data Size Berhasil Diperbaharui!');
+            redirect('Admin/KelolaDataMaster/size/' . $id_produk);
+        }
+    }
+
+    //kelola data diskon
+    public function diskon()
+    {
+        $this->form_validation->set_rules('produk', 'Produk', 'required');
+        $this->form_validation->set_rules('nama', 'Nama Diskon', 'required');
+        $this->form_validation->set_rules('besar', 'Besar Diskon', 'required');
+        $this->form_validation->set_rules('tgl_selesai', 'Tanggal Selesai', 'required');
+
+        if ($this->form_validation->run() == FALSE) {
+            $data = array(
+                'diskon' => $this->mKelolaDataMaster->diskon(),
+                'produk' => $this->mKelolaDataMaster->produk_sd()
+            );
+            $this->load->view('Admin/layouts/head');
+            $this->load->view('Admin/layouts/header');
+            $this->load->view('Admin/layouts/aside');
+            $this->load->view('Admin/Diskon/diskon', $data);
+            $this->load->view('Admin/layouts/footer');
+        } else {
+            $id = $this->input->post('produk');
+            $data = array(
+
+                'nama_diskon' => $this->input->post('nama'),
+                'besar_diskon' => $this->input->post('besar'),
+                'tgl_selesai' => $this->input->post('tgl_selesai')
+            );
+            $this->mKelolaDataMaster->update_diskon($id, $data);
+            $this->session->set_flashdata('success', 'Data Diskon Berhasil Ditambahkan!');
+            redirect('Admin/KelolaDataMaster/diskon');
+        }
+    }
+    //menampilkan harga setelah diskon dengan json
+    public function produk_diskon($id)
+    {
+        $data['diskon'] = $this->mKelolaDataMaster->produk_diskon($id);
+        header('Content-Type: application/json');
+        echo json_encode($data);
     }
 }
         

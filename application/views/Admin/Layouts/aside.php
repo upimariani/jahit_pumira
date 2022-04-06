@@ -32,7 +32,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="forms-validation.html">
+                    <a href="<?= base_url('Admin/KelolaDataMaster/diskon') ?>">
                         <i class="bi bi-circle"></i><span>Diskon</span>
                     </a>
                 </li>

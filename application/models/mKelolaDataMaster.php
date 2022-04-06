@@ -64,9 +64,20 @@ class mKelolaDataMaster extends CI_Model
         $this->db->join('kategori', 'produk.id_kategori = kategori.id_kategori', 'left');
         return $this->db->get()->result();
     }
+
+    //menampilkan id tertinggi
+    public function id_produk()
+    {
+        return $this->db->query('SELECT max(id_produk) as id FROM produk')->row();
+    }
     public function insert_produk($data)
     {
         $this->db->insert('produk', $data);
+    }
+    //menambahkan data diskon default
+    public function data_diskon($data)
+    {
+        $this->db->insert('diskon', $data);
     }
     public function edit_produk($id)
     {
@@ -85,6 +96,12 @@ class mKelolaDataMaster extends CI_Model
     {
         $this->db->where('id_produk', $id);
         $this->db->delete('produk');
+    }
+    //jika hapus produk, maka size produk all kehapus
+    public function del_size_all($id)
+    {
+        $this->db->where('id_produk', $id);
+        $this->db->delete('size');
     }
     //kelola data size
     public function size($id)
@@ -118,6 +135,40 @@ class mKelolaDataMaster extends CI_Model
     {
         $this->db->where('id_size', $id);
         $this->db->update('size', $data);
+    }
+
+    //kelola data diskon
+    public function diskon()
+    {
+        $this->db->select('*');
+        $this->db->from('diskon');
+        $this->db->join('produk', 'produk.id_produk = diskon.id_produk', 'left');
+        $this->db->where('besar_diskon!=0');
+        return $this->db->get()->result();
+    }
+    //produk yang belum ada diskon
+    public function produk_sd()
+    {
+        $this->db->select('*');
+        $this->db->from('diskon');
+        $this->db->join('produk', 'diskon.id_produk = produk.id_produk', 'left');
+        $this->db->where('besar_diskon=0');
+        return $this->db->get()->result();
+    }
+    public function update_diskon($id, $data)
+    {
+        $this->db->where('diskon.id_produk', $id);
+        $this->db->update('diskon', $data);
+    }
+    public function produk_diskon($id)
+    {
+        $this->db->select('*');
+        $this->db->from('produk');
+        $this->db->join('size', 'produk.id_produk = size.id_produk', 'left');
+        $this->db->join('diskon', 'produk.id_produk = diskon.id_produk', 'left');
+        $this->db->where('produk.id_produk', $id);
+
+        return $this->db->get()->result();
     }
 }
                         

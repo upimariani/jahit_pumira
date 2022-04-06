@@ -31,7 +31,7 @@
                 <div class="card">
                     <div class="card-body">
                         <h5 class="card-title">Informasi User</h5>
-                        <a href="<?= base_url('Admin/KelolaDataMaster/create_user') ?>" class="btn btn-success"><i class="bi bi-align-center"></i></a>
+                        <a href="<?= base_url('Admin/KelolaDataMaster/create_user') ?>" class="btn btn-success"><i class="bi bi-align-center"></i> Add New User</a>
 
                         <!-- Table with stripped rows -->
                         <table class="table datatable">

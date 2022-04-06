@@ -52,7 +52,7 @@
                                         <td class="text-center">Rp. <?= number_format($value->harga, 0) ?></td>
                                         <td class="text-center"><?= $value->stok ?></td>
                                         <td class="text-center"> <a href="<?= base_url('Admin/KelolaDataMaster/delete_size/' . $value->id_size . '/' . $value->id_produk) ?>" class="btn btn-danger"><i class="bi bi-trash"></i></a>
-                                            <a href="<?= base_url('Admin/KelolaDataMaster/update_produk/' . $value->id_produk) ?>" class="btn btn-success"><i class="bi bi-pencil-square"></i></a>
+                                            <a href="<?= base_url('Admin/KelolaDataMaster/edit_size/' . $value->id_size . '/' . $value->id_produk) ?>" class="btn btn-success"><i class="bi bi-pencil-square"></i></a>
                                         </td>
                                     </tr>
                                 <?php
