@@ -45,13 +45,28 @@
             </a>
             <ul id="tables-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
                 <li>
-                    <a href="tables-general.html">
+                    <a href="<?= base_url('Admin/Transaksi/pembayaran') ?>">
+                        <i class="bi bi-circle"></i><span>Pesanan Masuk</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="<?= base_url('Admin/Transaksi/konfirmasi_pembayaran') ?>">
                         <i class="bi bi-circle"></i><span>Konfirmasi Pembayaran</span>
                     </a>
                 </li>
                 <li>
-                    <a href="tables-data.html">
-                        <i class="bi bi-circle"></i><span>Status Order</span>
+                    <a href="<?= base_url('Admin/Transaksi/diproses') ?>">
+                        <i class="bi bi-circle"></i><span>Pesanan Diproses</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="<?= base_url('Admin/Transaksi/dikirim') ?>">
+                        <i class="bi bi-circle"></i><span>Pesanan Dikirim</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="<?= base_url('Admin/Transaksi/selesai') ?>">
+                        <i class="bi bi-circle"></i><span>Pesanan Selesai</span>
                     </a>
                 </li>
             </ul>

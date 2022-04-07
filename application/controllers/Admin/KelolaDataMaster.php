@@ -357,6 +357,44 @@ class KelolaDataMaster extends CI_Controller
         header('Content-Type: application/json');
         echo json_encode($data);
     }
+    public function update_diskon($id)
+    {
+        $this->form_validation->set_rules('nama', 'Nama Diskon', 'required');
+        $this->form_validation->set_rules('besar', 'Besar Diskon', 'required');
+        $this->form_validation->set_rules('tgl_selesai', 'Tanggal Selesai Diskon', 'required');
+
+
+        if ($this->form_validation->run() == FALSE) {
+            $data = array(
+                'diskon' => $this->mKelolaDataMaster->edit_diskon($id)
+            );
+            $this->load->view('Admin/layouts/head');
+            $this->load->view('Admin/layouts/header');
+            $this->load->view('Admin/layouts/aside');
+            $this->load->view('Admin/Diskon/update_diskon', $data);
+            $this->load->view('Admin/layouts/footer');
+        } else {
+            $data = array(
+                'nama_diskon' => $this->input->post('nama'),
+                'besar_diskon' => $this->input->post('besar'),
+                'tgl_selesai' => $this->input->post('tgl_selesai'),
+            );
+            $this->mKelolaDataMaster->update_diskon($id, $data);
+            $this->session->set_flashdata('success', 'Data Diskon Berhasil Diperbaharui!');
+            redirect('Admin/KelolaDataMaster/diskon');
+        }
+    }
+    public function delete_diskon($id)
+    {
+        $data = array(
+            'nama_diskon' => '0',
+            'besar_diskon' => '0',
+            'tgl_selesai' => '0'
+        );
+        $this->mKelolaDataMaster->update_diskon($id, $data);
+        $this->session->set_flashdata('success', 'Data Diskon Berhasil Dihapus!');
+        redirect('Admin/KelolaDataMaster/diskon');
+    }
 }
         
     /* End of file  KelolaDataMaster.php */

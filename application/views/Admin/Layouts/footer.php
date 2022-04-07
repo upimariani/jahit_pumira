@@ -56,6 +56,33 @@
         });
     });
 </script>
+<script>
+    $("#kembali").click(function() {
+        $(".detail_pesanan").slideUp("slow");
+    });
+    $('.detail tbody').on('click', 'button', function() {
+        console.log($(this).attr("data-id"));
+        $.ajax({
+            url: '<?= base_url() ?>Admin/Transaksi/detail_pesanan/' + $(this).attr("data-id"),
+            dataType: 'json',
+            type: 'get',
+            contentType: 'application/x-www-form-urlencoded',
+            data: $(this).serialize(),
+            success: function(data, textStatus, jQxhr) {
+                $('#list_detail').html("");
+                console.log(data.detail);
+                for (var i = 0; i < data.detail.length; i++) {
+                    console.log(data.detail.length);
+                    $('#list_detail').append("<tr><td>" + data.detail[i].nama_produk + "| Size" + data.detail[i].size + "</td><td>" + data.detail[i].qty + "</td><td>" + data.detail[i].harga + "</td><td>" + data.detail[i].harga * data.detail[i].qty + "</td></tr>");
+                }
+                $('.detail_pesanan').slideDown('slow');
+            },
+            error: function(jqXhr, textStatus, errorThrown) {
+                console.log(errorThrown);
+            }
+        });
+    });
+</script>
 </body>
 
 </html>

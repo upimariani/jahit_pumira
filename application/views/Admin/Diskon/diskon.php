@@ -120,7 +120,7 @@
                                         <td><?= $value->tgl_selesai ?></td>
                                         <td>
                                             <a href="<?= base_url('Admin/KelolaDataMaster/delete_diskon/' . $value->id_diskon) ?>" class="btn btn-danger"><i class="bi bi-trash"></i></a>
-                                            <a href="<?= base_url('Admin/KelolaDataMaster/edit_diskon/' . $value->id_diskon) ?>" class="btn btn-success"><i class="bi bi-pencil-square"></i></a>
+                                            <a href="<?= base_url('Admin/KelolaDataMaster/update_diskon/' . $value->id_diskon) ?>" class="btn btn-success"><i class="bi bi-pencil-square"></i></a>
                                         </td>
                                     </tr>
                                 <?php

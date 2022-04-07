@@ -155,9 +155,17 @@ class mKelolaDataMaster extends CI_Model
         $this->db->where('besar_diskon=0');
         return $this->db->get()->result();
     }
+    public function edit_diskon($id)
+    {
+        $this->db->select('*');
+        $this->db->from('diskon');
+        $this->db->join('produk', 'diskon.id_produk = produk.id_produk', 'left');
+        $this->db->where('diskon.id_produk', $id);
+        return $this->db->get()->row();
+    }
     public function update_diskon($id, $data)
     {
-        $this->db->where('diskon.id_produk', $id);
+        $this->db->where('id_diskon', $id);
         $this->db->update('diskon', $data);
     }
     public function produk_diskon($id)
@@ -167,7 +175,6 @@ class mKelolaDataMaster extends CI_Model
         $this->db->join('size', 'produk.id_produk = size.id_produk', 'left');
         $this->db->join('diskon', 'produk.id_produk = diskon.id_produk', 'left');
         $this->db->where('produk.id_produk', $id);
-
         return $this->db->get()->result();
     }
 }
