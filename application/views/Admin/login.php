@@ -53,54 +53,53 @@
                                 </a>
                             </div><!-- End Logo -->
 
+                            <?php
+                            if ($this->session->userdata('success')) {
+                            ?>
+                                <div class="alert alert-success alert-dismissible fade show" role="alert">
+                                    <?= $this->session->userdata('success') ?>
+                                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                                </div>
+                            <?php
+                            }
+                            ?>
+                            <?php
+                            if ($this->session->userdata('error')) {
+                            ?>
+                                <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                                    <?= $this->session->userdata('error') ?>
+                                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                                </div>
+                            <?php
+                            }
+                            ?>
                             <div class="card mb-3">
-
                                 <div class="card-body">
-
                                     <div class="pt-4 pb-2">
                                         <h5 class="card-title text-center pb-0 fs-4">Login to Your Account</h5>
                                         <p class="text-center small">Enter your username & password to login</p>
                                     </div>
-
-                                    <form class="row g-3 needs-validation" action="<?= base_url('Admin/Login') ?>" method="POST">
-
+                                    <form class="row g-3 needs-validation" action="<?= base_url('cLogin_admin') ?>" method="POST">
                                         <div class="col-12">
                                             <label for="yourUsername" class="form-label">Username</label>
-                                            <div class="input-group has-validation">
-                                                <span class="input-group-text" id="inputGroupPrepend">@</span>
-                                                <input type="text" name="username" class="form-control" id="yourUsername" required>
-                                                <div class="invalid-feedback">Please enter your username.</div>
-                                            </div>
+                                            <input type="text" name="username" class="form-control" id="yourUsername">
+                                            <?= form_error('username', '<small class="text-danger pl-3">', '</small>'); ?>
                                         </div>
-
                                         <div class="col-12">
                                             <label for="yourPassword" class="form-label">Password</label>
-                                            <input type="password" name="password" class="form-control" id="yourPassword" required>
-                                            <div class="invalid-feedback">Please enter your password!</div>
+                                            <input type="password" name="password" class="form-control" id="yourPassword">
+                                            <?= form_error('password', '<small class="text-danger pl-3">', '</small>'); ?>
                                         </div>
-
                                         <div class="col-12">
                                             <button class="btn btn-primary w-100" type="submit">Login</button>
                                         </div>
                                     </form>
-
                                 </div>
                             </div>
-
-                            <div class="credits">
-                                <!-- All the links in the footer should remain intact. -->
-                                <!-- You can delete the links only if you purchased the pro version. -->
-                                <!-- Licensing information: https://bootstrapmade.com/license/ -->
-                                <!-- Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/nice-admin-bootstrap-admin-html-template/ -->
-                                Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a>
-                            </div>
-
                         </div>
                     </div>
                 </div>
-
             </section>
-
         </div>
     </main><!-- End #main -->
 
@@ -115,10 +114,16 @@
     <script src="<?= base_url('asset/NiceAdmin/') ?>assets/vendor/simple-datatables/simple-datatables.js"></script>
     <script src="<?= base_url('asset/NiceAdmin/') ?>assets/vendor/tinymce/tinymce.min.js"></script>
     <script src="<?= base_url('asset/NiceAdmin/') ?>assets/vendor/php-email-form/validate.js"></script>
-
+    <script src="<?= base_url('asset/jquery.min.js') ?>"></script>
     <!-- Template Main JS File -->
     <script src="<?= base_url('asset/NiceAdmin/') ?>assets/js/main.js"></script>
-
+    <script>
+        window.setTimeout(function() {
+            $(".alert").fadeTo(500, 0).slideUp(500, function() {
+                $(this).remove();
+            });
+        }, 3000)
+    </script>
 </body>
 
 </html>

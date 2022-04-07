@@ -1,9 +1,9 @@
 <?php
 defined('BASEPATH') or exit('No direct script access allowed');
 
-class mLogin_admin extends CI_Model
+class mLogin extends CI_Model
 {
-    public function login_user($username, $password)
+    public function login_admin($username, $password)
     {
         $this->db->select('*');
         $this->db->from('user');
