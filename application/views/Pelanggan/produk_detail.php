@@ -32,7 +32,7 @@
                 <input type="hidden" class="size" name="size" value="<?= $data['produk']->size ?>">
                 <input type="hidden" class="stok" name="stok" value="<?= $data['produk']->stok ?>">
                 <input type="hidden" class="price" name="price" value="<?= $data['produk']->harga - ($data['produk']->besar_diskon / 100 * $data['produk']->harga) ?>">
-                <input type="hidden" name="netto" value="<?= $value->berat ?>">
+                <input type="hidden" name="netto" value="<?= $data['produk']->berat ?>">
                 <h3 class="font-weight-semi-bold"><?= $data['produk']->nama_produk ?></h3>
                 <div class="d-flex mb-3">
                     <div class="text-primary mr-2">

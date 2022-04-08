@@ -73,7 +73,7 @@
 
 
 <!-- JavaScript Libraries -->
-<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+<script src="<?= base_url('asset/jquery.min.js') ?>"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
 <script src="<?= base_url('asset/eshopper/') ?>lib/easing/easing.min.js"></script>
 <script src="<?= base_url('asset/eshopper/') ?>lib/owlcarousel/owl.carousel.min.js"></script>
@@ -84,9 +84,34 @@
 
 <!-- Template Javascript -->
 <script src="<?= base_url('asset/eshopper/') ?>js/main.js"></script>
-
 <script>
-    console.log = function() {}
+    $("#hide").click(function() {
+        $(".detail_pesanan").slideUp("slow");
+    });
+    $('.status_order tbody').on('click', 'button', function() {
+        console.log($(this).attr("data-id"));
+        $.ajax({
+            url: '<?= base_url() ?>Pelanggan/Katalog/detail_order/' + $(this).attr("data-id"),
+            dataType: 'json',
+            type: 'get',
+            contentType: 'application/x-www-form-urlencoded',
+            data: $(this).serialize(),
+            success: function(data, textStatus, jQxhr) {
+                $('#detail').html("");
+                console.log(data.produk.length);
+                for (var i = 0; i < data.produk.length; i++) {
+                    console.log(data.produk.length);
+                    $('#detail').append("<tr><td>" + data.produk[i].id_size + "</td></tr>");
+                }
+                $('.detail_pesanan').slideDown('slow');
+            },
+            error: function(jqXhr, textStatus, errorThrown) {
+                console.log(errorThrown);
+            }
+        });
+    });
+</script>
+<script>
     $("#produk").on('change', function() {
 
         $(".price-view").html($(this).find(':selected').attr('data-price-view'));
@@ -103,9 +128,10 @@
 
         $(".stok").html($(this).find(':selected').attr('data-stok'));
         $(".stok").val($(this).find(':selected').attr('data-stok'));
-
     });
 </script>
+
+
 </body>
 
 </html>

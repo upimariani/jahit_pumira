@@ -8,6 +8,7 @@ class Katalog extends CI_Controller
     {
         parent::__construct();
         $this->load->model('mKatalog');
+        $this->load->model('mStatusOrder');
     }
     public function index()
     {
@@ -89,6 +90,8 @@ class Katalog extends CI_Controller
                 'id_customer' => '1',
                 'tgl_transaksi' => date('Y-m-d'),
                 'alamat' => $this->input->post('alamat'),
+                'provinsi' => $this->input->post('provinsi'),
+                'kota' => $this->input->post('kota'),
                 'ekspedisi' => $this->input->post('expedisi'),
                 'estimasi' => $this->input->post('paket'),
                 'ongkir' => $this->input->post('ongkir'),
@@ -96,6 +99,18 @@ class Katalog extends CI_Controller
                 'total_bayar' => $this->input->post('total_bayar')
             );
             $this->db->insert('transaksi', $data);
+
+            //mengurangi jumlah stok
+            $kstok = 0;
+            foreach ($this->cart->contents() as $key => $value) {
+                $id = $value['id'];
+                $kstok = $value['stok'] - $value['qty'];
+                $data = array(
+                    'stok' => $kstok
+                );
+                $this->db->where('id_size', $id);
+                $this->db->update('size', $data);
+            }
 
             $i = 1;
             foreach ($this->cart->contents() as $item) {
@@ -106,9 +121,27 @@ class Katalog extends CI_Controller
                 );
                 $this->db->insert('detail_transaksi', $data_rinci);
             }
+            $this->cart->destroy();
             $this->session->set_flashdata('success', 'Pesanan Anda Berhasil, Silahkan melakukan pembayaran!');
             redirect('pelanggan/katalog');
         }
+    }
+    public function status_order()
+    {
+        $data = array(
+            'status_order' => $this->mStatusOrder->status_order()
+        );
+        $this->load->view('Pelanggan/Layouts/head');
+        $this->load->view('Pelanggan/Layouts/topend');
+        $this->load->view('Pelanggan/Layouts/categori');
+        $this->load->view('Pelanggan/status_order', $data);
+        $this->load->view('Pelanggan/Layouts/footer');
+    }
+    public function detail_order($id)
+    {
+        $data['produk'] = $this->mStatusOrder->detail_order($id);
+        header('Content-Type: application/json');
+        echo json_encode($data);
     }
 }
 
