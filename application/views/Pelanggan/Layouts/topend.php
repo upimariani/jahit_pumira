@@ -54,14 +54,18 @@
                     <i class="fas fa-heart text-primary"></i>
                     <span class="badge">0</span>
                 </a>
-                <a href="" class="btn border">
+                <?php
+                $cart = $this->cart->contents();
+                $qty = 0;
+                foreach ($cart as $key => $value) {
+                    $qty = $value['qty'] + $qty;
+                }
+                ?>
+                <a href="<?= base_url('Pelanggan/Katalog/cart') ?>" class="btn border">
                     <i class="fas fa-shopping-cart text-primary"></i>
-                    <span class="badge">0</span>
+                    <span class="badge"><?= $qty ?></span>
                 </a>
             </div>
         </div>
     </div>
     <!-- Topbar End -->
-
-
-  

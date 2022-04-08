@@ -84,6 +84,21 @@
 
 <!-- Template Javascript -->
 <script src="<?= base_url('asset/eshopper/') ?>js/main.js"></script>
+<script>
+    console.log = function() {}
+    $("#produk").on('change', function() {
+
+        $(".price-view").html($(this).find(':selected').attr('data-price-view'));
+        $(".price-view").val($(this).find(':selected').attr('data-price-view'));
+
+        $(".price").html($(this).find(':selected').attr('data-price'));
+        $(".price").val($(this).find(':selected').attr('data-price'));
+
+        $(".diskon").html($(this).find(':selected').attr('data-diskon'));
+        $(".diskon").val($(this).find(':selected').attr('data-diskon'));
+
+    });
+</script>
 </body>
 
 </html>
