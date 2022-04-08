@@ -72,10 +72,43 @@ class Katalog extends CI_Controller
     }
     public function checkout()
     {
-        $this->load->view('Pelanggan/Layouts/head');
-        $this->load->view('Pelanggan/Layouts/topend');
-        $this->load->view('Pelanggan/Layouts/categori');
-        $this->load->view('Pelanggan/checkout');
+        $this->form_validation->set_rules('provinsi', 'Provinsi', 'required');
+        $this->form_validation->set_rules('kota', 'Kota', 'required');
+        $this->form_validation->set_rules('alamat', 'Alamat Lengkap', 'required');
+        $this->form_validation->set_rules('expedisi', 'Expedisi', 'required');
+        $this->form_validation->set_rules('paket', 'Paket', 'required');
+
+        if ($this->form_validation->run() == FALSE) {
+            $this->load->view('Pelanggan/Layouts/head');
+            $this->load->view('Pelanggan/Layouts/topend');
+            $this->load->view('Pelanggan/Layouts/categori');
+            $this->load->view('Pelanggan/checkout');
+        } else {
+            $data = array(
+                'id_transaksi' => $this->input->post('id_transaksi'),
+                'id_customer' => '1',
+                'tgl_transaksi' => date('Y-m-d'),
+                'alamat' => $this->input->post('alamat'),
+                'ekspedisi' => $this->input->post('expedisi'),
+                'estimasi' => $this->input->post('paket'),
+                'ongkir' => $this->input->post('ongkir'),
+                'status_order' => '0',
+                'total_bayar' => $this->input->post('total_bayar')
+            );
+            $this->db->insert('transaksi', $data);
+
+            $i = 1;
+            foreach ($this->cart->contents() as $item) {
+                $data_rinci = array(
+                    'id_transaksi' => $this->input->post('id_transaksi'),
+                    'id_size' => $item['id'],
+                    'qty' => $this->input->post('qty' . $i++)
+                );
+                $this->db->insert('detail_transaksi', $data_rinci);
+            }
+            $this->session->set_flashdata('success', 'Pesanan Anda Berhasil, Silahkan melakukan pembayaran!');
+            redirect('pelanggan/katalog');
+        }
     }
 }
 
