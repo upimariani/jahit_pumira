@@ -174,6 +174,7 @@ class KelolaDataMaster extends CI_Controller
                     'nama_produk' => $this->input->post('nama'),
                     'deskripsi' => $this->input->post('deskripsi'),
                     'gambar' => $upload_data['file_name'],
+                    'berat' => $this->input->post('berat')
                 );
                 $this->mKelolaDataMaster->insert_produk($data);
 
@@ -225,6 +226,7 @@ class KelolaDataMaster extends CI_Controller
                     'nama_produk' => $this->input->post('nama'),
                     'deskripsi' => $this->input->post('deskripsi'),
                     'gambar' => $upload_data['file_name'],
+                    'berat' => $this->input->post('berat')
                 );
                 $this->mKelolaDataMaster->update_produk($id, $data);
                 $this->session->set_flashdata('success', 'Data Produk Berhasil Diperbaharui !!!');
@@ -233,7 +235,8 @@ class KelolaDataMaster extends CI_Controller
             $data = array(
                 'id_kategori' => $this->input->post('kategori'),
                 'nama_produk' => $this->input->post('nama'),
-                'deskripsi' => $this->input->post('deskripsi')
+                'deskripsi' => $this->input->post('deskripsi'),
+                'berat' => $this->input->post('berat')
             );
             $this->mKelolaDataMaster->update_produk($id, $data);
             $this->session->set_flashdata('success', 'Data Produk Berhasil Diperbaharui !!!');

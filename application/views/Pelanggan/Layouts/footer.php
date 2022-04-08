@@ -84,6 +84,7 @@
 
 <!-- Template Javascript -->
 <script src="<?= base_url('asset/eshopper/') ?>js/main.js"></script>
+
 <script>
     console.log = function() {}
     $("#produk").on('change', function() {
@@ -96,6 +97,12 @@
 
         $(".diskon").html($(this).find(':selected').attr('data-diskon'));
         $(".diskon").val($(this).find(':selected').attr('data-diskon'));
+
+        $(".size").html($(this).find(':selected').attr('data-size'));
+        $(".size").val($(this).find(':selected').attr('data-size'));
+
+        $(".stok").html($(this).find(':selected').attr('data-stok'));
+        $(".stok").val($(this).find(':selected').attr('data-stok'));
 
     });
 </script>

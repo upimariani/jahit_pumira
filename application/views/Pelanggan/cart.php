@@ -34,16 +34,16 @@
                     foreach ($this->cart->contents() as $key => $value) {
                     ?>
                         <tr>
-                            <td class="align-middle"><img src="img/product-1.jpg" alt="" style="width: 50px;"> <?= $value['name'] ?></td>
+                            <td class="align-middle"><img src="img/product-1.jpg" alt="" style="width: 50px;"> <?= $value['name'] ?> | <?= $value['size'] ?></td>
                             <td class="align-middle">Rp. <?= number_format($value['price'], 0) ?></td>
                             <td class="align-middle">
-                                <div class="input-group quantity mx-auto" style="width: 100px;">
+                                <div class="input-group quantity mx-auto" style="width: 150px;">
                                     <div class="input-group-btn">
                                         <button class="btn btn-sm btn-primary btn-minus">
                                             <i class="fa fa-minus"></i>
                                         </button>
                                     </div>
-                                    <input type="text" name="<?= $i . '[qty]' ?>" data-min="1" class="form-control form-control-sm bg-secondary text-center" value="<?= $value['qty'] ?>">
+                                    <input type="number" name="<?= $i . '[qty]' ?>" min="1" max="<?= $value['stok'] ?>" class="form-control form-control-sm bg-secondary text-center" value="<?= $value['qty'] ?>">
                                     <div class="input-group-btn">
                                         <button class="btn btn-sm btn-primary btn-plus">
                                             <i class="fa fa-plus"></i>

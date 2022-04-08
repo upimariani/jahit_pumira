@@ -36,7 +36,10 @@ class Katalog extends CI_Controller
             'id' => $this->input->post('id'),
             'name' => $this->input->post('name'),
             'price' => $this->input->post('price'),
-            'qty' => $this->input->post('qty')
+            'qty' => $this->input->post('qty'),
+            'size' => $this->input->post('size'),
+            'stok' => $this->input->post('stok'),
+            'netto' => $this->input->post('netto')
         );
         $this->cart->insert($data);
         redirect('Pelanggan/katalog');
@@ -73,7 +76,6 @@ class Katalog extends CI_Controller
         $this->load->view('Pelanggan/Layouts/topend');
         $this->load->view('Pelanggan/Layouts/categori');
         $this->load->view('Pelanggan/checkout');
-        $this->load->view('Pelanggan/Layouts/footer');
     }
 }
 

@@ -29,7 +29,10 @@
         <div class="col-lg-7 pb-5">
             <form action="<?= base_url('pelanggan/katalog/add') ?>" method="POST">
                 <input type="hidden" name="name" value="<?= $data['produk']->nama_produk ?>">
+                <input type="hidden" class="size" name="size" value="<?= $data['produk']->size ?>">
+                <input type="hidden" class="stok" name="stok" value="<?= $data['produk']->stok ?>">
                 <input type="hidden" class="price" name="price" value="<?= $data['produk']->harga - ($data['produk']->besar_diskon / 100 * $data['produk']->harga) ?>">
+                <input type="hidden" name="netto" value="<?= $value->berat ?>">
                 <h3 class="font-weight-semi-bold"><?= $data['produk']->nama_produk ?></h3>
                 <div class="d-flex mb-3">
                     <div class="text-primary mr-2">
@@ -56,7 +59,7 @@
                             <?php
                             foreach ($data['size'] as $key => $value) {
                             ?>
-                                <option data-diskon="Rp. <?= number_format($value->harga, 0)  ?>" data-price-view="Rp. <?= number_format($value->harga - ($value->besar_diskon / 100 * $value->harga), 0) ?>" data-price="<?= $value->harga - ($value->besar_diskon / 100 * $value->harga) ?>" value="<?= $value->id_size ?>"><?= $value->size ?></option>
+                                <option data-stok="<?= $value->stok ?>" data-size="<?= $value->size ?>" data-diskon="Rp. <?= number_format($value->harga, 0)  ?>" data-price-view="Rp. <?= number_format($value->harga - ($value->besar_diskon / 100 * $value->harga), 0) ?>" data-price="<?= $value->harga - ($value->besar_diskon / 100 * $value->harga) ?>" value="<?= $value->id_size ?>"><?= $value->size ?></option>
                             <?php
                             }
                             ?>

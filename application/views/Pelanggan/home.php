@@ -231,9 +231,12 @@
             <div class="col-lg-3 col-md-6 col-sm-12 pb-1">
                 <form action="<?= base_url('Pelanggan/Katalog/add') ?>" method="POST">
                     <input type="hidden" name="id" value="<?= $value->id_size ?>">
+                    <input type="hidden" name="size" value="<?= $value->size ?>">
+                    <input type="hidden" name="stok" value="<?= $value->stok ?>">
                     <input type="hidden" name="name" value="<?= $value->nama_produk ?>">
                     <input type="hidden" name="price" value="<?= $value->harga - ($value->besar_diskon / 100 * $value->harga) ?>">
                     <input type="hidden" name="qty" value="1">
+                    <input type="hidden" name="netto" value="<?= $value->berat ?>">
                     <div class="card product-item border-0 mb-4">
                         <div class="card-header product-img position-relative overflow-hidden bg-transparent border p-0">
                             <img class="img-fluid w-100" src="<?= base_url('asset/foto-produk/' . $value->gambar) ?>" alt="">
