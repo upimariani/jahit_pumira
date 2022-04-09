@@ -16,6 +16,16 @@
 <div class="container-fluid pt-5">
     <div class="text-center mb-4">
         <h2 class="section-title px-5"><span class="px-2">Informasi Status Order</span></h2>
+        <?php
+        if ($this->session->userdata('success')) {
+        ?>
+            <div class="alert alert-success" role="alert">
+                <?= $this->session->userdata('success') ?>
+            </div>
+        <?php
+        }
+        ?>
+
     </div>
     <div class="row ml-5">
         <div class="col-lg-8 mb-5">
@@ -35,20 +45,42 @@
                         <tr>
                             <td>No.<strong><?= $value->id_transaksi ?></strong><br>
                                 Tgl.Order : <?= $value->tgl_transaksi ?><br>
-                                <small><?= $value->update_at ?></small>
-                                <span class="badge badge-success">Dikirim</span><br>
+                                <small><?= $value->update_at ?></small><br>
+                                <?php
+                                if ($value->status_order == '0') {
+                                    echo '<span class="badge badge-danger">Belum Bayar</span><br>';
+                                } else if ($value->status_order == '1') {
+                                    echo '<span class="badge badge-primary">Menunggu Konfirmasi</span><br>';
+                                } else if ($value->status_order == '2') {
+                                    echo '<span class="badge badge-warning">Diproses</span><br>';
+                                } else if ($value->status_order == '3') {
+                                    echo '<span class="badge badge-info">Dikirim</span><br>';
+                                } else if ($value->status_order == '4') {
+                                    echo '<span class="badge badge-success">Selesai</span><br>';
+                                }
+                                ?>
+
                                 <?php
                                 if ($value->status_order == '0') {
                                 ?>
-                                    <form class="mt-5">
+                                    <?php echo form_open_multipart('pelanggan/katalog/upload_bukti_pembayaran/' . $value->id_transaksi); ?>
+                                    <div class="mt-5">
                                         <label>Bukti Pembayaran</label>
-                                        <input type="file" class="form-control">
+                                        <p>No. Rekening: <strong>0123-456-789</strong></p>
+                                        <input type="file" name="pembayaran" class="form-control" required>
                                         <button class="btn btn-sm btn-primary mt-2">Upload</button>
+                                    </div>
                                     </form>
                                 <?php
                                 }
                                 ?>
-
+                                <?php
+                                if ($value->status_order == '3') {
+                                ?>
+                                    <a class="btn btn-primary mt-5" href="<?= base_url('pelanggan/katalog/pesanan_diterima/' . $value->id_transaksi) ?>">Pesanan Diterima</a>
+                                <?php
+                                }
+                                ?>
                             </td>
                             <td>Expedisi: <strong> <?= $value->ekspedisi ?></strong><br>
                                 Estimasi: <?= $value->estimasi ?><br>Alamat:
@@ -67,7 +99,7 @@
                 </tbody>
             </table>
         </div>
-        <div class="detail_pesanan col-lg-2" style="display:none">
+        <div class="detail_pesanan col-lg-4" style="display:none">
             <h4>Detail Pesanan</h4>
             <div class="d-flex flex-column mb-3">
                 <table id="detail" class="table table-bordered mb-3" id="detail">

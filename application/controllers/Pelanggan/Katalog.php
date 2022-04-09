@@ -20,6 +20,7 @@ class Katalog extends CI_Controller
         $this->load->view('Pelanggan/home', $data);
         $this->load->view('Pelanggan/Layouts/footer');
     }
+    //halaman detail produk
     public function detail_produk($id)
     {
         $data = array(
@@ -31,8 +32,11 @@ class Katalog extends CI_Controller
         $this->load->view('Pelanggan/produk_detail', $data);
         $this->load->view('Pelanggan/Layouts/footer');
     }
+
+    //add to cart
     public function add()
     {
+        $this->protect->protect();
         $data = array(
             'id' => $this->input->post('id'),
             'name' => $this->input->post('name'),
@@ -45,6 +49,8 @@ class Katalog extends CI_Controller
         $this->cart->insert($data);
         redirect('Pelanggan/katalog');
     }
+
+    //informasi cart
     public function cart()
     {
         $this->load->view('Pelanggan/Layouts/head');
@@ -71,6 +77,8 @@ class Katalog extends CI_Controller
         $this->cart->remove($rowid);
         redirect('Pelanggan/katalog/cart');
     }
+
+    //proses checkout
     public function checkout()
     {
         $this->form_validation->set_rules('provinsi', 'Provinsi', 'required');
@@ -126,6 +134,8 @@ class Katalog extends CI_Controller
             redirect('pelanggan/katalog');
         }
     }
+
+    //status order pelanggan
     public function status_order()
     {
         $data = array(
@@ -142,6 +152,48 @@ class Katalog extends CI_Controller
         $data['produk'] = $this->mStatusOrder->detail_order($id);
         header('Content-Type: application/json');
         echo json_encode($data);
+    }
+
+    //upload bukti bukti pembyaran
+    public function upload_bukti_pembayaran($id)
+    {
+        $config['upload_path']          = './asset/bukti-pembayaran';
+        $config['allowed_types']        = 'gif|jpg|png';
+        $config['max_size']             = 5000;
+
+        $this->load->library('upload', $config);
+
+        if (!$this->upload->do_upload('pembayaran')) {
+            $data = array(
+                'status_order' => $this->mStatusOrder->status_order(),
+                'error' => $this->upload->display_errors()
+            );
+            $this->load->view('Pelanggan/Layouts/head');
+            $this->load->view('Pelanggan/Layouts/topend');
+            $this->load->view('Pelanggan/Layouts/categori');
+            $this->load->view('Pelanggan/status_order', $data);
+            $this->load->view('Pelanggan/Layouts/footer');
+        } else {
+            $upload_data =  $this->upload->data();
+            $data = array(
+                'status_order' => '1',
+                'bukti_pembayaran' => $upload_data['file_name']
+            );
+            $this->db->where('id_transaksi', $id);
+            $this->db->update('transaksi', $data);
+            $this->session->set_flashdata('success', 'Upload Pembayaran Berhasil Dikirim!');
+            redirect('pelanggan/katalog/status_order');
+        }
+    }
+    public function pesanan_diterima($id)
+    {
+        $data = array(
+            'status_order' => '4'
+        );
+        $this->db->where('id_transaksi', $id);
+        $this->db->update('transaksi', $data);
+        $this->session->set_flashdata('success', 'Pesanan Anda Sudah Diterima!');
+        redirect('pelanggan/katalog/status_order');
     }
 }
 

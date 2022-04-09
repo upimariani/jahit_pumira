@@ -85,6 +85,13 @@
 <!-- Template Javascript -->
 <script src="<?= base_url('asset/eshopper/') ?>js/main.js"></script>
 <script>
+    window.setTimeout(function() {
+        $(".alert").fadeTo(500, 0).slideUp(500, function() {
+            $(this).remove();
+        });
+    }, 3000)
+</script>
+<script>
     $("#hide").click(function() {
         $(".detail_pesanan").slideUp("slow");
     });
@@ -101,7 +108,7 @@
                 console.log(data.produk.length);
                 for (var i = 0; i < data.produk.length; i++) {
                     console.log(data.produk.length);
-                    $('#detail').append("<tr><td>" + data.produk[i].id_size + "</td></tr>");
+                    $('#detail').append("<tr><td>" + data.produk[i].nama_produk + "</td><td>(" + data.produk[i].qty + ")x</td><td>Rp. " + data.produk[i].harga + "</td></tr>");
                 }
                 $('.detail_pesanan').slideDown('slow');
             },
