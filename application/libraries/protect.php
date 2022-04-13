@@ -16,6 +16,13 @@ class protect
             redirect('pelanggan/auth');
         }
     }
+    public function protect_admin()
+    {
+        if ($this->ci->session->userdata('id') == '') {
+            $this->ci->session->set_flashdata('error', 'Anda Belum Melakukan Login!');
+            redirect('');
+        }
+    }
 }
 
 /* End of file protect.php */

@@ -95,7 +95,7 @@ class Katalog extends CI_Controller
         } else {
             $data = array(
                 'id_transaksi' => $this->input->post('id_transaksi'),
-                'id_customer' => '1',
+                'id_customer' => $this->session->userdata('id'),
                 'tgl_transaksi' => date('Y-m-d'),
                 'alamat' => $this->input->post('alamat'),
                 'provinsi' => $this->input->post('provinsi'),

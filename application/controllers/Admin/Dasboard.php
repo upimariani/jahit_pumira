@@ -7,6 +7,7 @@ class Dasboard extends CI_Controller
 
     public function index()
     {
+        $this->protect->protect_admin();
         $this->load->view('Admin/layouts/head');
         $this->load->view('Admin/layouts/header');
         $this->load->view('Admin/layouts/aside');

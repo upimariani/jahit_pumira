@@ -11,6 +11,7 @@ class Transaksi extends CI_Controller
     }
     public function pembayaran()
     {
+        $this->protect->protect_admin();
         $data = array(
             'pesanan' => $this->mTransaksi->pesanan_masuk()
         );
@@ -22,6 +23,7 @@ class Transaksi extends CI_Controller
     }
     public function konfirmasi_pembayaran()
     {
+        $this->protect->protect_admin();
         $data = array(
             'pesanan' => $this->mTransaksi->pesanan_masuk()
         );
@@ -42,6 +44,7 @@ class Transaksi extends CI_Controller
     }
     public function diproses()
     {
+        $this->protect->protect_admin();
         $data = array(
             'pesanan' => $this->mTransaksi->pesanan_masuk()
         );
@@ -68,6 +71,7 @@ class Transaksi extends CI_Controller
     }
     public function dikirim()
     {
+        $this->protect->protect_admin();
         $data = array(
             'pesanan' => $this->mTransaksi->pesanan_masuk()
         );
@@ -79,6 +83,7 @@ class Transaksi extends CI_Controller
     }
     public function selesai()
     {
+        $this->protect->protect_admin();
         $data = array(
             'pesanan' => $this->mTransaksi->pesanan_masuk()
         );

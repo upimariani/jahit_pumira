@@ -14,6 +14,7 @@ class KelolaDataMaster extends CI_Controller
     //kelola data user
     public function user()
     {
+        $this->protect->protect_admin();
         $data = array(
             'user' => $this->mKelolaDataMaster->select_user()
         );
@@ -34,6 +35,7 @@ class KelolaDataMaster extends CI_Controller
 
 
         if ($this->form_validation->run() == FALSE) {
+            $this->protect->protect_admin();
             $this->load->view('Admin/layouts/head');
             $this->load->view('Admin/layouts/header');
             $this->load->view('Admin/layouts/aside');
@@ -98,6 +100,7 @@ class KelolaDataMaster extends CI_Controller
         $this->form_validation->set_rules('nama', 'Nama Kategori', 'required|is_unique[kategori.nama_kategori]');
 
         if ($this->form_validation->run() == FALSE) {
+            $this->protect->protect_admin();
             $data = array(
                 'kategori' => $this->mKelolaDataMaster->select_kategori()
             );
@@ -140,6 +143,7 @@ class KelolaDataMaster extends CI_Controller
 
 
         if ($this->form_validation->run() == FALSE) {
+            $this->protect->protect_admin();
             $data = array(
                 'produk' => $this->mKelolaDataMaster->select_produk(),
                 'kategori' => $this->mKelolaDataMaster->select_kategori(),
@@ -268,6 +272,7 @@ class KelolaDataMaster extends CI_Controller
 
 
         if ($this->form_validation->run() == FALSE) {
+            $this->protect->protect_admin();
             $data = array(
                 'size' => $this->mKelolaDataMaster->size($id)
             );
@@ -331,6 +336,7 @@ class KelolaDataMaster extends CI_Controller
         $this->form_validation->set_rules('tgl_selesai', 'Tanggal Selesai', 'required');
 
         if ($this->form_validation->run() == FALSE) {
+            $this->protect->protect_admin();
             $data = array(
                 'diskon' => $this->mKelolaDataMaster->diskon(),
                 'produk' => $this->mKelolaDataMaster->produk_sd()

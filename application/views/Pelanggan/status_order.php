@@ -118,18 +118,19 @@
                                     if ($value->total_bayar != '0') { ?>
                                         Pesanan : <h6>Rp. <?= number_format($value->total_bayar - $value->ongkir, 0)  ?></h6>
                                         Total : <h5><strong>Rp. <?= number_format($value->total_bayar, 0)  ?></strong></h5>
-                                    <?php } ?>
+                                <?php }
+                                } ?>
                             </td>
                             <?php
-                                    if ($value->status_pesan == '2') {
+                            if ($value->status_pesan == '2') {
                             ?><td class="text-center"><button data-id="<?= $value->id_transaksi ?>" class="btn btn-sm btn-primary"><i class="fas fa-align-justify"></i></button></td>
                             <?php
-                                    } else if ($value->status_pesan == '1') { ?>
+                            } else if ($value->status_pesan == '1') { ?>
                                 <td class="text-center"><a href="<?= base_url('pelanggan/custome/detail_custome/' . $value->id_transaksi) ?>" class="btn btn-sm btn-primary"><i class="fas fa-align-justify"></i></a></td>
                             <?php } ?>
                         </tr>
-                <?php }
-                            } ?>
+                    <?php }
+                    ?>
                 </tbody>
             </table>
         </div>

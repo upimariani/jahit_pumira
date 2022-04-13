@@ -31,13 +31,7 @@ class cLogin_admin extends CI_Controller
             }
         }
     }
-    public function protect()
-    {
-        if ($this->session->userdata('id') == '') {
-            $this->session->set_flashdata('error', 'Anda Belum Melakukan Login!');
-            redirect('');
-        }
-    }
+   
     public function logout()
     {
         $this->session->unset_userdata('id');
