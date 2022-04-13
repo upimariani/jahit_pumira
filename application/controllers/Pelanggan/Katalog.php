@@ -104,6 +104,7 @@ class Katalog extends CI_Controller
                 'estimasi' => $this->input->post('paket'),
                 'ongkir' => $this->input->post('ongkir'),
                 'status_order' => '0',
+                'status_pesan' => '2',
                 'total_bayar' => $this->input->post('total_bayar')
             );
             $this->db->insert('transaksi', $data);
@@ -131,7 +132,7 @@ class Katalog extends CI_Controller
             }
             $this->cart->destroy();
             $this->session->set_flashdata('success', 'Pesanan Anda Berhasil, Silahkan melakukan pembayaran!');
-            redirect('pelanggan/katalog');
+            redirect('pelanggan/status_order');
         }
     }
 

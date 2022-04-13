@@ -19,7 +19,7 @@
         <div class="col-lg-7 mb-5">
             <div class="contact-form">
                 <div id="success"></div>
-                <?php echo form_open_multipart('upload/do_upload'); ?>
+                <?php echo form_open_multipart('pelanggan/custome'); ?>
 
                 <div class="row">
                     <div class="col-lg-6">
@@ -78,6 +78,10 @@
             </div>
             <input type="hidden" name="ongkir">
             <input type="hidden" name="estimasi">
+            <input name="subtotal" value="<?= $this->cart->total() ?>" hidden>
+            <?php $id_transaksi = date('Ymd') . strtoupper(random_string('alnum', 8));
+            ?>
+            <input type="hidden" name="id_transaksi" value="<?= $id_transaksi ?>">
             <div class="row">
                 <div class="col-md-6 form-group">
                     <label>Provinsi</label>

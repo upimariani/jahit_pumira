@@ -20,6 +20,16 @@ class mStatusOrder extends CI_Model
         $this->db->where('transaksi.id_transaksi', $id);
         return $this->db->get()->result();
     }
+
+    //detail custom
+    public function detail_custom($id)
+    {
+        $this->db->select('*');
+        $this->db->from('transaksi');
+        $this->db->join('custom', 'transaksi.id_transaksi = custom.id_transaksi', 'left');
+        $this->db->where('transaksi.id_transaksi', $id);
+        return $this->db->get()->row();
+    }
 }
 
 /* End of file mStatusOrder.php */
