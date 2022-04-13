@@ -62,8 +62,8 @@
                         <div class="carousel-caption d-flex flex-column align-items-center justify-content-center">
                             <div class="p-3" style="max-width: 700px;">
                                 <h4 class="text-light text-uppercase font-weight-medium mb-3">10% Off Your First Order</h4>
-                                <h3 class="display-4 text-white font-weight-semi-bold mb-4">Fashionable Dress</h3>
-                                <a href="" class="btn btn-light py-2 px-3">Shop Now</a>
+                                <h3 class="display-4 text-white font-weight-semi-bold mb-4">You Can Customize Here</h3>
+                                <a href="<?= base_url('pelanggan/Custome') ?>" class="btn btn-light py-2 px-3">Customize</a>
                             </div>
                         </div>
                     </div>
