@@ -67,10 +67,11 @@
                             </thead>
                             <tbody>
                                 <?php
+                                $no = 1;
                                 foreach ($pesanan['proses'] as $key => $value) {
                                 ?>
                                     <tr>
-                                        <th scope="row">1</th>
+                                        <th scope="row"><?= $no++ ?></th>
                                         <td>Nama : <strong><?= $value->nama_customer ?></strong>
                                             <p>No Telepon : <span class="badge bg-warning"><?= $value->no_hp ?></span></p>
                                         </td>
@@ -80,8 +81,8 @@
                                             <h5>Ongkir: Rp.<?= number_format($value->ongkir, 0) ?></h5>
                                         </td>
                                         <td class="text-center">
-                                            Total Belanja : <h5> Rp. <?= number_format($value->total_bayar, 0) ?></h5>
-                                            <h4><strong>Rp. <?= number_format($value->ongkir + $value->total_bayar, 0)  ?></strong></h4><span class="badge bg-success"> <i class="bi bi-cash-coin"></i> Sudah Bayar</span>
+                                            Total Belanja : <h5> Rp. <?= number_format($value->total_bayar - $value->ongkir, 0) ?></h5>
+                                            <h4><strong>Rp. <?= number_format($value->total_bayar, 0)  ?></strong></h4><span class="badge bg-danger">Belum Bayar</span>
                                         </td>
                                         <td class="text-center"><button type="button" data-id="<?= $value->id_transaksi ?>" class="btn btn-primary"><i class="bi bi-collection"></i></button>
                                             <form class="d-inline-block" action="<?= base_url('Admin/Transaksi/kirim/' . $value->id_transaksi) ?>" method="POST">

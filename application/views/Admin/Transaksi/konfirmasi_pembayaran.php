@@ -40,10 +40,11 @@
                             </thead>
                             <tbody>
                                 <?php
+                                $no = 1;
                                 foreach ($pesanan['konfirmasi'] as $key => $value) {
                                 ?>
                                     <tr>
-                                        <th scope="row">1</th>
+                                        <th scope="row"><?= $no++ ?></th>
                                         <td>Nama : <strong><?= $value->nama_customer ?></strong>
                                             <p>No Telepon : <span class="badge bg-warning"><?= $value->no_hp ?></span></p>
                                         </td>
@@ -53,8 +54,8 @@
                                             <h5>Ongkir: Rp.<?= number_format($value->ongkir, 0) ?></h5>
                                         </td>
                                         <td class="text-center">
-                                            Total Belanja : <h5> Rp. <?= number_format($value->total_bayar, 0) ?></h5>
-                                            <h4><strong>Rp. <?= number_format($value->ongkir + $value->total_bayar, 0)  ?></strong></h4><span class="badge bg-danger">Belum Bayar</span>
+                                            Total Belanja : <h5> Rp. <?= number_format($value->total_bayar - $value->ongkir, 0) ?></h5>
+                                            <h4><strong>Rp. <?= number_format($value->total_bayar, 0)  ?></strong></h4><span class="badge bg-danger">Belum Bayar</span>
                                         </td>
                                         <td class="text-center"> <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#basicModal<?= $value->id_transaksi ?>">
                                                 <i class="bi bi-bag-check"> Konfirmasi Pembayaran
@@ -89,7 +90,7 @@ foreach ($pesanan['konfirmasi'] as $key => $value) {
                     </div>
                     <div class="modal-body">
                         <p>Bukti Pembayaran</p>
-                        <img style="width: 150px;" src="">
+                        <img style="width: 450px;" src="<?= base_url('asset/bukti-pembayaran/' . $value->bukti_pembayaran) ?>">
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>

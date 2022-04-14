@@ -53,6 +53,7 @@ class Katalog extends CI_Controller
     //informasi cart
     public function cart()
     {
+        $this->protect->protect();
         $this->load->view('Pelanggan/Layouts/head');
         $this->load->view('Pelanggan/Layouts/topend');
         $this->load->view('Pelanggan/Layouts/categori');
@@ -81,6 +82,7 @@ class Katalog extends CI_Controller
     //proses checkout
     public function checkout()
     {
+        $this->protect->protect();
         $this->form_validation->set_rules('provinsi', 'Provinsi', 'required');
         $this->form_validation->set_rules('kota', 'Kota', 'required');
         $this->form_validation->set_rules('alamat', 'Alamat Lengkap', 'required');
@@ -132,13 +134,14 @@ class Katalog extends CI_Controller
             }
             $this->cart->destroy();
             $this->session->set_flashdata('success', 'Pesanan Anda Berhasil, Silahkan melakukan pembayaran!');
-            redirect('pelanggan/status_order');
+            redirect('pelanggan/katalog/status_order');
         }
     }
 
     //status order pelanggan
     public function status_order()
     {
+        $this->protect->protect();
         $data = array(
             'status_order' => $this->mStatusOrder->status_order()
         );

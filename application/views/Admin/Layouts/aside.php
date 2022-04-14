@@ -12,9 +12,7 @@
 
 
         <li class="nav-item">
-            <a class="nav-link  <?php if ($this->uri->segment(1) == 'Admin' && $this->uri->segment(2) == 'Transaksi') {
-                                    echo 'collapsed';
-                                }  ?>" data-bs-target="#forms-nav" data-bs-toggle="collapse" href="#">
+            <a class="nav-link collapsed" data-bs-target="#forms-nav" data-bs-toggle="collapse" href="#">
                 <i class="bi bi-journal-text"></i><span>Kelola Data Master</span><i class="bi bi-chevron-down ms-auto"></i>
             </a>
             <ul id="forms-nav" class="nav-content collapse <?php if ($this->uri->segment(1) == 'Admin' && $this->uri->segment(2) == 'KelolaDataMaster') {
@@ -52,9 +50,7 @@
         </li><!-- End Forms Nav -->
 
         <li class="nav-item">
-            <a class="nav-link <?php if ($this->uri->segment(1) == 'Admin' && $this->uri->segment(2) == 'KelolaDataMaster') {
-                                    echo 'collapsed';
-                                }  ?>" data-bs-target="#tables-nav" data-bs-toggle="collapse" href="#">
+            <a class="nav-link collapsed" data-bs-target="#tables-nav" data-bs-toggle="collapse" href="#">
                 <i class="bi bi-bag-check"></i><span>Transaksi</span><i class="bi bi-chevron-down ms-auto"></i>
             </a>
             <ul id="tables-nav" class="nav-content collapse <?php if ($this->uri->segment(1) == 'Admin' && $this->uri->segment(2) == 'Transaksi') {
@@ -97,6 +93,12 @@
                 </li>
             </ul>
         </li><!-- End Tables Nav -->
+        <li class="nav-item">
+            <a class="nav-link collapsed" href="<?= base_url('Admin/Custom') ?>">
+                <i class="bi bi-grid"></i>
+                <span>Pesanan Custom</span>
+            </a>
+        </li><!-- End Dashboard Nav -->
         <li class="nav-item">
             <a class="nav-link collapsed" href="<?= base_url('cLogin_Admin/logout') ?>">
                 <i class="bi bi-arrow-bar-right"></i>

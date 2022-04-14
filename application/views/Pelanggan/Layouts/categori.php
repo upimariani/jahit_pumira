@@ -50,6 +50,8 @@
                         <?php
                         }
                         ?>
+                        <a href="<?= base_url('pelanggan/katalog/status_order') ?>" class="nav-item nav-link">Pesanan Saya</a>
+
                     </div>
                 </div>
             </nav>

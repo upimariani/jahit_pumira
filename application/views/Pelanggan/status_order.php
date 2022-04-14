@@ -126,7 +126,7 @@
                             ?><td class="text-center"><button data-id="<?= $value->id_transaksi ?>" class="btn btn-sm btn-primary"><i class="fas fa-align-justify"></i></button></td>
                             <?php
                             } else if ($value->status_pesan == '1') { ?>
-                                <td class="text-center"><a href="<?= base_url('pelanggan/custome/detail_custome/' . $value->id_transaksi) ?>" class="btn btn-sm btn-primary"><i class="fas fa-align-justify"></i></a></td>
+                                <td class="text-center"><a href="<?= base_url('pelanggan/custome/detail_custome/' . $value->id_transaksi) ?>" class="btn btn-sm btn-success"><i class="fas fa-align-justify"></i></a></td>
                             <?php } ?>
                         </tr>
                     <?php }

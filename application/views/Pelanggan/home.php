@@ -51,7 +51,7 @@
                         }
                         ?>
 
-                        <a href="" class="nav-item nav-link">Register</a>
+                        <a href="<?= base_url('pelanggan/katalog/status_order') ?>" class="nav-item nav-link">Pesanan Saya</a>
                     </div>
                 </div>
             </nav>

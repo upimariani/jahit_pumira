@@ -9,7 +9,7 @@ class mStatusOrder extends CI_Model
         $this->db->from('transaksi');
         $this->db->join('customer', 'transaksi.id_customer = customer.id_customer', 'left');
         $this->db->where('transaksi.id_customer', $this->session->userdata('id'));
-
+        $this->db->where('transaksi.status_pesan=2');
         return $this->db->get()->result();
     }
     public function detail_order($id)
