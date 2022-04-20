@@ -137,7 +137,7 @@
         <div class="detail_pesanan col-lg-4" style="display:none">
             <h4>Detail Pesanan</h4>
             <div class="d-flex flex-column mb-3">
-                <table id="detail" class="table table-bordered mb-3" id="detail">
+                <table id="detail" class="table table-bordered mb-3">
 
 
 
