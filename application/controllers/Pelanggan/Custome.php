@@ -14,6 +14,7 @@ class Custome extends CI_Controller
 
     public function index()
     {
+        $this->protect->protect();
         $this->form_validation->set_rules('nama', 'Nama', 'required');
         $this->form_validation->set_rules('pjng_baju', 'Panjang Baju', 'required');
         $this->form_validation->set_rules('bahu', 'Ukuran Bahu', 'required');

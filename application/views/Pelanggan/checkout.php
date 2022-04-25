@@ -43,11 +43,11 @@
                     <div class="row">
                         <div class="col-md-6 form-group">
                             <label>Atas Nama</label>
-                            <input class="form-control" type="text" placeholder="John">
+                            <input value="<?= $this->session->userdata('nama') ?>" class="form-control" type="text" readonly>
                         </div>
                         <div class="col-md-6 form-group">
                             <label>No Telepon</label>
-                            <input class="form-control" type="text" placeholder="Doe">
+                            <input value="<?= $this->session->userdata('no_hp') ?>" class="form-control" type="text" readonly>
                         </div>
                         <div class="col-md-6 form-group">
                             <label>Provinsi</label>
@@ -211,7 +211,7 @@
     $(document).ready(function() {
         $.ajax({
             type: "POST",
-            url: "http://localhost:8080/jahit_pumira/pelanggan/ongkir/provinsi",
+            url: "http://localhost/jahit_pumira/pelanggan/ongkir/provinsi",
             success: function(hasil_provinsi) {
                 console.log(hasil_provinsi);
                 $("select[name=provinsi]").html(hasil_provinsi);
@@ -222,7 +222,7 @@
             var id_provinsi_terpilih = $("option:selected", this).attr("id_provinsi");
             $.ajax({
                 type: "POST",
-                url: "http://localhost:8080/jahit_pumira/pelanggan/ongkir/kota",
+                url: "http://localhost/jahit_pumira/pelanggan/ongkir/kota",
                 data: 'id_provinsi=' + id_provinsi_terpilih,
                 success: function(hasil_kota) {
                     $("select[name=kota]").html(hasil_kota);
@@ -233,7 +233,7 @@
         $("select[name=kota]").on("change", function() {
             $.ajax({
                 type: "POST",
-                url: "http://localhost:8080/jahit_pumira/pelanggan/ongkir/expedisi",
+                url: "http://localhost/jahit_pumira/pelanggan/ongkir/expedisi",
                 success: function(hasil_expedisi) {
                     $("select[name=expedisi]").html(hasil_expedisi);
                 }
@@ -251,7 +251,7 @@
             //alert(total_berat);
             $.ajax({
                 type: "POST",
-                url: "http://localhost:8080/jahit_pumira/pelanggan/ongkir/paket",
+                url: "http://localhost/jahit_pumira/pelanggan/ongkir/paket",
                 data: 'expedisi=' + expedisi_terpilih + '&id_kota=' + id_kota_tujuan_terpilih + '&berat=' + total_berat,
                 success: function(hasil_paket) {
                     $("select[name=paket]").html(hasil_paket);

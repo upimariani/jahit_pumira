@@ -8,6 +8,7 @@ class Custom extends CI_Controller
     {
         parent::__construct();
         $this->load->model('mCustom');
+        $this->load->model('mTransaksi');
     }
 
 
@@ -41,6 +42,24 @@ class Custom extends CI_Controller
         $this->mCustom->kirim_bayar($id, $data);
         $this->session->set_flashdata('success', 'Total Pembayaran Berhasil Dikirim!');
         redirect('admin/custom');
+    }
+    public function konfirmasi($id)
+    {
+        $data = array(
+            'status_order' => '2'
+        );
+        $this->mTransaksi->konfirmasi($id, $data);
+        $this->session->set_flashdata('success', 'Pesanan Berhasil Dikonfirmasi!');
+        redirect('Admin/Custom');
+    }
+    public function dikirim($id)
+    {
+        $data = array(
+            'status_order' => '3'
+        );
+        $this->mTransaksi->konfirmasi($id, $data);
+        $this->session->set_flashdata('success', 'Pesanan Berhasil Dikirim!');
+        redirect('Admin/Custom');
     }
 }
 

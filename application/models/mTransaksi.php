@@ -6,11 +6,11 @@ class mTransaksi extends CI_Model
 {
     public function pesanan_masuk()
     {
-        $data['pesanan_masuk'] = $this->db->query('SELECT * FROM transaksi JOIN customer ON transaksi.id_customer = customer.id_customer WHERE status_order=0')->result();
-        $data['konfirmasi'] = $this->db->query('SELECT * FROM `transaksi` JOIN customer ON transaksi.id_customer = customer.id_customer WHERE status_order=1')->result();
-        $data['proses'] = $this->db->query('SELECT * FROM `transaksi` JOIN customer ON transaksi.id_customer = customer.id_customer WHERE status_order=2')->result();
-        $data['kirim'] = $this->db->query('SELECT * FROM `transaksi` JOIN customer ON transaksi.id_customer = customer.id_customer WHERE status_order=3')->result();
-        $data['selesai'] = $this->db->query('SELECT * FROM `transaksi` JOIN customer ON transaksi.id_customer = customer.id_customer WHERE status_order=4')->result();
+        $data['pesanan_masuk'] = $this->db->query('SELECT * FROM transaksi JOIN customer ON transaksi.id_customer = customer.id_customer WHERE status_order=0 AND status_pesan=2')->result();
+        $data['konfirmasi'] = $this->db->query('SELECT * FROM `transaksi` JOIN customer ON transaksi.id_customer = customer.id_customer WHERE status_order=1 AND status_pesan=2')->result();
+        $data['proses'] = $this->db->query('SELECT * FROM `transaksi` JOIN customer ON transaksi.id_customer = customer.id_customer WHERE status_order=2 AND status_pesan=2')->result();
+        $data['kirim'] = $this->db->query('SELECT * FROM `transaksi` JOIN customer ON transaksi.id_customer = customer.id_customer WHERE status_order=3 AND status_pesan=2')->result();
+        $data['selesai'] = $this->db->query('SELECT * FROM `transaksi` JOIN customer ON transaksi.id_customer = customer.id_customer WHERE status_order=4 AND status_pesan=2')->result();
         return $data;
     }
     public function konfirmasi($id, $data)

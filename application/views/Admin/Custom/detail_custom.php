@@ -47,12 +47,14 @@
                                     <?= $detail['custom']->provinsi ?>
                                 </strong>
                                 <p>
-                                    <?= $detail['custom']->alamat ?> <br> <?= $detail['custom']->kota ?> <br> <?= $detail['custom']->ekspedisi ?> <br> <?= $detail['custom']->estimasi ?> <br>
+                                    <?= $detail['custom']->alamat ?> <br> <?= $detail['custom']->kota ?> <br> <?= $detail['custom']->ekspedisi ?> <?= $detail['custom']->estimasi ?> <br>
+
+                                <h5>Ongkir : Rp. <?= number_format($detail['custom']->ongkir) ?></h5>
 
                                 </p>
 
                                 <?php
-                                if ($detail['custom']->total_bayar == NULL) {
+                                if ($detail['custom']->total_bayar == '0') {
                                 ?>
                                     <hr>
                                     <h5 class="text-danger">Pembayaran</h5>
@@ -91,7 +93,7 @@
                                     <th>&nbsp;</th>
                                     <th>&nbsp;</th>
                                     <th>Subtotal </th>
-                                    <th class="text-right"></th>
+                                    <th class="text-right">Rp. <?= number_format($detail['custom']->total_bayar - $detail['custom']->ongkir, 0)  ?></th>
                                 </tr>
                                 <tr>
                                     <th>&nbsp;</th>
@@ -105,7 +107,7 @@
                                     <th>&nbsp;</th>
                                     <th>&nbsp;</th>
                                     <th>Total </th>
-                                    <th class="text-right">$268.85</th>
+                                    <th class="text-right">Rp. <?= number_format($detail['custom']->total_bayar, 0)  ?></th>
                                 </tr>
                             </tbody>
                         </table>

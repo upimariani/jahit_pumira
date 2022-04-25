@@ -29,7 +29,12 @@ class Auth extends CI_Controller
             $data = $this->mAuth->login($username, $password);
             if ($data) {
                 $id = $data->id_customer;
+                $nama = $data->nama_customer;
+                $no_hp = $data->no_hp;
                 $this->session->set_userdata('id', $id);
+                $this->session->set_userdata('nama', $nama);
+                $this->session->set_userdata('no_hp', $no_hp);
+
                 redirect('pelanggan/katalog');
             } else {
                 $this->session->set_flashdata('error', 'Username dan Password Anda Salah!');
@@ -41,6 +46,8 @@ class Auth extends CI_Controller
     public function logout()
     {
         $this->session->unset_userdata('id');
+        $this->session->unset_userdata('nama');
+        $this->session->unset_userdata('no_hp');
         $this->session->set_flashdata('success', 'Anda Berhasil Login!');
         redirect('pelanggan/auth', 'refresh');
     }

@@ -57,7 +57,7 @@
                                         </td>
                                         <td>
                                             <?php
-                                            if ($value->total_bayar != NULL) {
+                                            if ($value->total_bayar != '0') {
                                             ?>
                                                 Total Belanja : <h5> Rp. <?= number_format($value->total_bayar - $value->ongkir, 0) ?></h5>
                                                 <h4><strong>Rp. <?= number_format($value->total_bayar, 0)  ?></strong></h4>
@@ -85,7 +85,11 @@
                                             <?php
                                             if ($value->status_order == '1') {
                                             ?>
-                                                <button class="btn btn-warning">Konfirmasi</button>
+                                                <button class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#basicModal<?= $value->id_transaksi ?>">Konfirmasi</button>
+                                            <?php
+                                            } else if ($value->status_order == '2') {
+                                            ?>
+                                                <a href="<?= base_url('Admin/Custom/dikirim/' . $value->id_transaksi) ?>" class="btn btn-info">Konfirmasi</a>
                                             <?php
                                             }
                                             ?>
@@ -108,3 +112,32 @@
     </section>
 
 </main><!-- End #main -->
+
+
+
+<?php
+foreach ($pesanan_masuk as $key => $value) {
+?>
+    <div class="modal fade" id="basicModal<?= $value->id_transaksi ?>" tabindex="-1">
+        <div class="modal-dialog">
+            <form action="<?= base_url('Admin/Custom/konfirmasi/' . $value->id_transaksi) ?>" method="POST">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Konfirmasi Pembayaran</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <p>Bukti Pembayaran</p>
+                        <img style="width: 450px;" src="<?= base_url('asset/bukti-pembayaran/' . $value->bukti_pembayaran) ?>">
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-success">Konfirmasi</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div><!-- End Basic Modal-->
+<?php
+}
+?>
