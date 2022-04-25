@@ -4,7 +4,7 @@
         JAHIT PUMIRA
     </div>
     <div class="credits">
-        ADMIN
+        PEMILIK
     </div>
 </footer><!-- End Footer -->
 
