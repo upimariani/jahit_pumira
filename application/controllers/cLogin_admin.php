@@ -22,9 +22,16 @@ class cLogin_admin extends CI_Controller
             $data = $this->mLogin->login_admin($username, $password);
             if ($data) {
                 $id = $data->id_user;
+                $level = $data->level_user;
                 $this->session->set_userdata('id', $id);
-                $this->session->set_flashdata('success', 'Selamat Datang Admin!');
-                redirect('Admin/Dasboard');
+
+                if ($level == '1') {
+                    $this->session->set_flashdata('success', 'Selamat Datang Admin!');
+                    redirect('Admin/Dasboard');
+                } else {
+                    $this->session->set_flashdata('success', 'Selamat Datang Pemilik!');
+                    redirect('Pemilik/Laporan');
+                }
             } else {
                 $this->session->set_flashdata('error', 'Username dan Password Salah!');
                 redirect('');
