@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 25, 2022 at 09:08 AM
+-- Generation Time: May 06, 2022 at 02:17 AM
 -- Server version: 10.4.6-MariaDB
 -- PHP Version: 7.3.9
 
@@ -137,12 +137,12 @@ CREATE TABLE `diskon` (
 --
 
 INSERT INTO `diskon` (`id_diskon`, `id_produk`, `nama_diskon`, `besar_diskon`, `tgl_selesai`) VALUES
-(1, 1, 'rizki', 15, 'rizki'),
+(1, 1, 'rizki', 15, '2022-05-19'),
 (2, 2, '0', 0, '0'),
 (9, 12, '0', 0, '0'),
 (10, 13, '0', 0, '0'),
 (11, 14, '0', 0, '0'),
-(12, 15, '0', 0, '0'),
+(12, 15, 'coba', 20, '2022-05-19'),
 (13, 16, '0', 0, '0'),
 (14, 17, '0', 0, '0'),
 (15, 18, '0', 0, '0');
