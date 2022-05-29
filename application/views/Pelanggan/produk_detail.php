@@ -1,14 +1,6 @@
 <!-- Page Header Start -->
-<div class="container-fluid bg-secondary mb-5">
-    <div class="d-flex flex-column align-items-center justify-content-center" style="min-height: 300px">
-        <h1 class="font-weight-semi-bold text-uppercase mb-3">Shop Detail</h1>
-        <div class="d-inline-flex">
-            <p class="m-0"><a href="">Home</a></p>
-            <p class="m-0 px-2">-</p>
-            <p class="m-0">Shop Detail</p>
-        </div>
-    </div>
-</div>
+<img style="height: 400px ; width:1340px ;" src="<?= base_url('asset/rjpumira.png') ?>" class="container-fluid bg-secondary mb-5">
+
 <!-- Page Header End -->
 
 
@@ -70,17 +62,9 @@
                 </div>
                 <div class="d-flex align-items-center mb-4 pt-2">
                     <div class="input-group quantity mr-3" style="width: 130px;">
-                        <div class="input-group-btn">
-                            <button class="btn btn-primary btn-minus">
-                                <i class="fa fa-minus"></i>
-                            </button>
-                        </div>
-                        <input type="text" name="qty" class="form-control bg-secondary text-center" value="1">
-                        <div class="input-group-btn">
-                            <button class="btn btn-primary btn-plus">
-                                <i class="fa fa-plus"></i>
-                            </button>
-                        </div>
+
+                        <input type="number" name="qty" class="form-control bg-secondary text-center" value="1">
+
                     </div>
                     <button type="submit" class="btn btn-primary px-3"><i class="fa fa-shopping-cart mr-1"></i> Add To Cart</button>
                 </div>

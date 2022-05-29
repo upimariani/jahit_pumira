@@ -9,6 +9,7 @@ class Custome extends CI_Controller
     {
         parent::__construct();
         $this->load->model('mStatusOrder');
+        $this->load->model('mKelolaDataMaster');
     }
 
 
@@ -22,9 +23,12 @@ class Custome extends CI_Controller
 
 
         if ($this->form_validation->run() == FALSE) {
+            $data = array(
+                'kategori' => $this->mKelolaDataMaster->select_kategori()
+            );
             $this->load->view('Pelanggan/Layouts/head');
             $this->load->view('Pelanggan/Layouts/topend');
-            $this->load->view('Pelanggan/Layouts/categori');
+            $this->load->view('Pelanggan/Layouts/categori', $data);
             $this->load->view('Pelanggan/custome');
         } else {
             $config['upload_path']          = './asset/model-baju';
@@ -34,10 +38,13 @@ class Custome extends CI_Controller
             $this->load->library('upload', $config);
 
             if (!$this->upload->do_upload('gambar')) {
-                $error = array('error' => $this->upload->display_errors());
+                $error = array(
+                    'error' => $this->upload->display_errors(),
+                    'kategori' => $this->mKelolaDataMaster->select_kategori()
+                );
                 $this->load->view('Pelanggan/Layouts/head');
                 $this->load->view('Pelanggan/Layouts/topend');
-                $this->load->view('Pelanggan/Layouts/categori');
+                $this->load->view('Pelanggan/Layouts/categori', $error);
                 $this->load->view('Pelanggan/custome',  $error);
             } else {
                 $upload_data = $this->upload->data();
@@ -76,11 +83,12 @@ class Custome extends CI_Controller
     public function detail_custome($id)
     {
         $data = array(
-            'dcustom' => $this->mStatusOrder->detail_custom($id)
+            'dcustom' => $this->mStatusOrder->detail_custom($id),
+            'kategori' => $this->mKelolaDataMaster->select_kategori()
         );
         $this->load->view('Pelanggan/Layouts/head');
         $this->load->view('Pelanggan/Layouts/topend');
-        $this->load->view('Pelanggan/Layouts/categori');
+        $this->load->view('Pelanggan/Layouts/categori', $data);
         $this->load->view('Pelanggan/detail_custom', $data);
         $this->load->view('pelanggan/Layouts/footer');
     }

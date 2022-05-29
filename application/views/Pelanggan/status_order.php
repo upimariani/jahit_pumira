@@ -1,16 +1,7 @@
 <!-- Page Header Start -->
-<div class="container-fluid bg-secondary mb-5">
-    <div class="d-flex flex-column align-items-center justify-content-center" style="min-height: 300px">
-        <h1 class="font-weight-semi-bold text-uppercase mb-3">Informasi Status Order</h1>
-        <div class="d-inline-flex">
-            <p class="m-0"><a href="">Home</a></p>
-            <p class="m-0 px-2">-</p>
-            <p class="m-0">Status Order</p>
-        </div>
-    </div>
-</div>
-<!-- Page Header End -->
+<img style="height: 400px ; width:1340px ;" src="<?= base_url('asset/status_order.png') ?>" class="container-fluid bg-secondary mb-5">
 
+<!-- Page Header End -->
 
 <!-- Contact Start -->
 <div class="container-fluid pt-5">

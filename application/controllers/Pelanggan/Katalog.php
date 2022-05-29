@@ -9,11 +9,13 @@ class Katalog extends CI_Controller
         parent::__construct();
         $this->load->model('mKatalog');
         $this->load->model('mStatusOrder');
+        $this->load->model('mKelolaDataMaster');
     }
     public function index()
     {
         $data = array(
-            'produk' => $this->mKatalog->katalog()
+            'produk' => $this->mKatalog->katalog(),
+            'kategori' => $this->mKelolaDataMaster->select_kategori()
         );
         $this->load->view('Pelanggan/Layouts/head');
         $this->load->view('Pelanggan/Layouts/topend');
@@ -54,9 +56,12 @@ class Katalog extends CI_Controller
     public function cart()
     {
         $this->protect->protect();
+        $data = array(
+            'kategori' => $this->mKelolaDataMaster->select_kategori()
+        );
         $this->load->view('Pelanggan/Layouts/head');
         $this->load->view('Pelanggan/Layouts/topend');
-        $this->load->view('Pelanggan/Layouts/categori');
+        $this->load->view('Pelanggan/Layouts/categori', $data);
         $this->load->view('Pelanggan/cart');
         $this->load->view('Pelanggan/Layouts/footer');
     }
@@ -90,9 +95,12 @@ class Katalog extends CI_Controller
         $this->form_validation->set_rules('paket', 'Paket', 'required');
 
         if ($this->form_validation->run() == FALSE) {
+            $data = array(
+                'kategori' => $this->mKelolaDataMaster->select_kategori()
+            );
             $this->load->view('Pelanggan/Layouts/head');
             $this->load->view('Pelanggan/Layouts/topend');
-            $this->load->view('Pelanggan/Layouts/categori');
+            $this->load->view('Pelanggan/Layouts/categori', $data);
             $this->load->view('Pelanggan/checkout');
         } else {
             $data = array(
@@ -143,11 +151,12 @@ class Katalog extends CI_Controller
     {
         $this->protect->protect();
         $data = array(
-            'status_order' => $this->mStatusOrder->status_order()
+            'status_order' => $this->mStatusOrder->status_order(),
+            'kategori' => $this->mKelolaDataMaster->select_kategori()
         );
         $this->load->view('Pelanggan/Layouts/head');
         $this->load->view('Pelanggan/Layouts/topend');
-        $this->load->view('Pelanggan/Layouts/categori');
+        $this->load->view('Pelanggan/Layouts/categori', $data);
         $this->load->view('Pelanggan/status_order', $data);
         $this->load->view('Pelanggan/Layouts/footer');
     }
@@ -170,11 +179,12 @@ class Katalog extends CI_Controller
         if (!$this->upload->do_upload('pembayaran')) {
             $data = array(
                 'status_order' => $this->mStatusOrder->status_order(),
-                'error' => $this->upload->display_errors()
+                'error' => $this->upload->display_errors(),
+                'kategori' => $this->mKelolaDataMaster->select_kategori()
             );
             $this->load->view('Pelanggan/Layouts/head');
             $this->load->view('Pelanggan/Layouts/topend');
-            $this->load->view('Pelanggan/Layouts/categori');
+            $this->load->view('Pelanggan/Layouts/categori', $data);
             $this->load->view('Pelanggan/status_order', $data);
             $this->load->view('Pelanggan/Layouts/footer');
         } else {

@@ -8,6 +8,7 @@ class Auth extends CI_Controller
     {
         parent::__construct();
         $this->load->model('mAuth');
+        $this->load->model('mKelolaDataMaster');
     }
 
     //login
@@ -18,9 +19,12 @@ class Auth extends CI_Controller
 
 
         if ($this->form_validation->run() == FALSE) {
+            $data = array(
+                'kategori' => $this->mKelolaDataMaster->select_kategori()
+            );
             $this->load->view('Pelanggan/Layouts/head');
             $this->load->view('Pelanggan/Layouts/topend');
-            $this->load->view('Pelanggan/Layouts/categori');
+            $this->load->view('Pelanggan/Layouts/categori', $data);
             $this->load->view('Pelanggan/login');
             $this->load->view('Pelanggan/Layouts/footer');
         } else {
@@ -63,9 +67,12 @@ class Auth extends CI_Controller
 
 
         if ($this->form_validation->run() == FALSE) {
+            $data = array(
+                'kategori' => $this->mKelolaDataMaster->select_kategori()
+            );
             $this->load->view('Pelanggan/Layouts/head');
             $this->load->view('Pelanggan/Layouts/topend');
-            $this->load->view('Pelanggan/Layouts/categori');
+            $this->load->view('Pelanggan/Layouts/categori', $data);
             $this->load->view('Pelanggan/register');
             $this->load->view('Pelanggan/Layouts/footer');
         } else {

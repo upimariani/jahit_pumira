@@ -1,14 +1,6 @@
 <!-- Page Header Start -->
-<div class="container-fluid bg-secondary mb-5">
-    <div class="d-flex flex-column align-items-center justify-content-center" style="min-height: 300px">
-        <h1 class="font-weight-semi-bold text-uppercase mb-3">Checkout</h1>
-        <div class="d-inline-flex">
-            <p class="m-0"><a href="">Home</a></p>
-            <p class="m-0 px-2">-</p>
-            <p class="m-0">Checkout</p>
-        </div>
-    </div>
-</div>
+<img style="height: 400px ; width:1340px ;" src="<?= base_url('asset/checkout.png') ?>" class="container-fluid bg-secondary mb-5">
+
 <!-- Page Header End -->
 
 <form action="<?= base_url('pelanggan/katalog/checkout') ?>" method="POST">
@@ -54,26 +46,31 @@
                             <select name="provinsi" class="custom-select">
 
                             </select>
+                            <?= form_error('provinsi', '<small class="text-danger">', '</small>') ?>
                         </div>
                         <div class="col-md-6 form-group">
                             <label>Kota/Kabupaten</label>
                             <select name="kota" class="custom-select">
 
                             </select>
+                            <?= form_error('kota', '<small class="text-danger">', '</small>') ?>
                         </div>
                         <div class="col-md-12 form-group">
                             <label>Alamat</label>
                             <textarea rows="3" class="form-control" name="alamat" type="text" placeholder="Masukkan Alamat Lengkap"></textarea>
+                            <?= form_error('alamat', '<small class="text-danger">', '</small>') ?>
                         </div>
                         <div class="col-md-6 form-group">
                             <label>Expedisi</label>
                             <select name="expedisi" class="custom-select">
                             </select>
+                            <?= form_error('expedisi', '<small class="text-danger">', '</small>') ?>
                         </div>
                         <div class="col-md-6 form-group">
                             <label>Estimasi</label>
                             <select name="paket" class="custom-select">
                             </select>
+                            <?= form_error('paket', '<small class="text-danger">', '</small>') ?>
                         </div>
                     </div>
                 </div>
