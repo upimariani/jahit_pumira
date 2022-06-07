@@ -42,26 +42,23 @@
                         ?>
 
                         <a href="<?= base_url('pelanggan/katalog/status_order') ?>" class="nav-item nav-link">Pesanan Saya</a>
+                        <a href="<?= base_url('pelanggan/Custome') ?>" class="nav-item nav-link">Customize</a>
                     </div>
                 </div>
             </nav>
             <div id="header-carousel" class="carousel slide" data-ride="carousel">
                 <div class="carousel-inner">
                     <div class="carousel-item active" style="height: 410px;">
-                        <img class="img-fluid" src="<?= base_url('asset/eshopper/') ?>img/carousel-1.jpg" alt="Image">
+                        <img class="img-fluid" src="<?= base_url('asset/eshopper/') ?>img/jt_1.png" alt="Image">
                         <div class="carousel-caption d-flex flex-column align-items-center justify-content-center">
                             <div class="p-3" style="max-width: 700px;">
-                                <h3 class="display-4 text-white font-weight-semi-bold mb-4">Rumah Jahit Pumira</h3>
-                                <a href="<?= base_url('pelanggan/Custome') ?>" class="btn btn-light py-2 px-3">Customize</a>
                             </div>
                         </div>
                     </div>
                     <div class="carousel-item" style="height: 410px;">
-                        <img class="img-fluid" src="<?= base_url('asset/eshopper/') ?>img/carousel-2.jpg" alt="Image">
+                        <img class="img-fluid" src="<?= base_url('asset/eshopper/') ?>img/jt_2.png" alt="Image">
                         <div class="carousel-caption d-flex flex-column align-items-center justify-content-center">
                             <div class="p-3" style="max-width: 700px;">
-                                <h3 class="display-4 text-white font-weight-semi-bold mb-4">Welcome Home Jahit Pumira</h3>
-                                <a href="" class="btn btn-light py-2 px-3">Shop Now</a>
                             </div>
                         </div>
                     </div>

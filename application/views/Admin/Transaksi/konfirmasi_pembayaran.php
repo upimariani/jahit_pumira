@@ -55,7 +55,7 @@
                                         </td>
                                         <td class="text-center">
                                             Total Belanja : <h5> Rp. <?= number_format($value->total_bayar - $value->ongkir, 0) ?></h5>
-                                            <h4><strong>Rp. <?= number_format($value->total_bayar, 0)  ?></strong></h4><span class="badge bg-danger">Belum Bayar</span>
+                                            <h4><strong>Rp. <?= number_format($value->total_bayar, 0)  ?></strong></h4><span class="badge bg-info">Menunggu Konfirmasi</span>
                                         </td>
                                         <td class="text-center"> <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#basicModal<?= $value->id_transaksi ?>">
                                                 <i class="bi bi-bag-check"> Konfirmasi Pembayaran

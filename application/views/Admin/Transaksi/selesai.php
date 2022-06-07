@@ -54,7 +54,7 @@
                                         </td>
                                         <td class="text-center">
                                             Total Belanja : <h5> Rp. <?= number_format($value->total_bayar - $value->ongkir, 0) ?></h5>
-                                            <h4><strong>Rp. <?= number_format($value->total_bayar, 0)  ?></strong></h4><span class="badge bg-danger">Belum Bayar</span>
+                                            <h4><strong>Rp. <?= number_format($value->total_bayar, 0)  ?></strong></h4><span class="badge bg-success">Selesai</span>
                                         </td>
                                     </tr>
                                 <?php

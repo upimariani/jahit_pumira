@@ -89,7 +89,7 @@
                                             <?php
                                             } else if ($value->status_order == '2') {
                                             ?>
-                                                <a href="<?= base_url('Admin/Custom/dikirim/' . $value->id_transaksi) ?>" class="btn btn-info">Konfirmasi</a>
+                                                <a href="<?= base_url('Admin/Custom/dikirim/' . $value->id_transaksi) ?>" class="btn btn-warning">Kirim</a>
                                             <?php
                                             }
                                             ?>

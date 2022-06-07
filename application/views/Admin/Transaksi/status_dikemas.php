@@ -82,7 +82,7 @@
                                         </td>
                                         <td class="text-center">
                                             Total Belanja : <h5> Rp. <?= number_format($value->total_bayar - $value->ongkir, 0) ?></h5>
-                                            <h4><strong>Rp. <?= number_format($value->total_bayar, 0)  ?></strong></h4><span class="badge bg-danger">Belum Bayar</span>
+                                            <h4><strong>Rp. <?= number_format($value->total_bayar, 0)  ?></strong></h4><span class="badge bg-warning">Diproses</span>
                                         </td>
                                         <td class="text-center"><button type="button" data-id="<?= $value->id_transaksi ?>" class="btn btn-primary"><i class="bi bi-collection"></i></button>
                                             <form class="d-inline-block" action="<?= base_url('Admin/Transaksi/kirim/' . $value->id_transaksi) ?>" method="POST">
