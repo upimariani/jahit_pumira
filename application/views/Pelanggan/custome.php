@@ -14,50 +14,58 @@
                 <?php echo form_open_multipart('pelanggan/custome'); ?>
 
                 <div class="row">
-                    <div class="col-lg-6">
+                    <div class="col-lg-6 mb-3">
                         <div class="control-group">
                             <label>Nama Bahan</label>
-                            <input type="text" name="nama" class="form-control" id="name" placeholder="Masukkan Nama Bahan" />
-                            <p class="help-block text-danger"></p>
+                            <select class="form-control" name="nama">
+                                <option value="">---Pilih Kain---</option>
+                                <?php
+                                foreach ($kain as $key => $value) {
+                                ?>
+                                    <option value="<?= $value->id_kain ?>"><?= $value->nama_kain ?></option>
+                                <?php
+                                }
+                                ?>
+                            </select>
+                            <?= form_error('nama', '<p class="help-block text-danger">', '</p>') ?>
                         </div>
                     </div>
-                    <div class="col-lg-6">
+                    <div class="col-lg-6 mb-3">
                         <div class="control-group">
                             <label>Upload Contoh Model</label>
-                            <input type="file" name="gambar" class="form-control" id="email" />
-                            <p class="help-block text-danger"></p>
+                            <input type="file" name="gambar" class="form-control" id="email" required />
                         </div>
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-lg-6">
+                    <div class="col-lg-6 mb-3">
                         <div class="control-group">
                             <label>Panjang Baju</label>
                             <input type="text" name="pjng_baju" class="form-control" id="subject" placeholder="Masukkan Panjang Baju dalam cm" />
-                            <p class="help-block text-danger"></p>
+                            <?= form_error('pjng_baju', '<p class="help-block text-danger">', '</p>') ?>
                         </div>
                     </div>
-                    <div class="col-lg-6">
+                    <div class="col-lg-6 mb-3">
                         <div class="control-group">
                             <label>Panjang Lengan</label>
                             <input type="text" name="pjng_lengan" class="form-control" id="subject" placeholder="Masukkan Panjang Lengan dalam cm" />
-                            <p class="help-block text-danger"></p>
+                            <?= form_error('pjng_lengan', '<p class="help-block text-danger">', '</p>') ?>
                         </div>
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-lg-6">
+                    <div class="col-lg-6 mb-3">
                         <div class="control-group">
                             <label>Bahu</label>
                             <input type="text" name="bahu" class="form-control" id="subject" placeholder="Masukkan Ukuran Bahu dalam cm" />
-                            <p class="help-block text-danger"></p>
+                            <?= form_error('bahu', '<p class="help-block text-danger">', '</p>') ?>
                         </div>
                     </div>
-                    <div class="col-lg-6">
+                    <div class="col-lg-6 mb-3">
                         <div class="control-group">
                             <label>Pundak</label>
                             <input type="text" name="pundak" class="form-control" id="subject" placeholder="Masukkan Ukuran Pundak dalam cm" />
-                            <p class="help-block text-danger"></p>
+                            <?= form_error('pundak', '<p class="help-block text-danger">', '</p>') ?>
                         </div>
                     </div>
                 </div>
@@ -77,13 +85,13 @@
             <div class="row">
                 <div class="col-md-6 form-group">
                     <label>Provinsi</label>
-                    <select name="provinsi" class="custom-select">
+                    <select name="provinsi" class="custom-select" required>
 
                     </select>
                 </div>
                 <div class="col-md-6 form-group">
                     <label>Kota/Kabupaten</label>
-                    <select name="kota" class="custom-select">
+                    <select name="kota" class="custom-select" required>
 
                     </select>
                 </div>
@@ -91,17 +99,17 @@
 
             <div class="col-md-12 form-group">
                 <label>Alamat</label>
-                <textarea rows="3" class="form-control" name="alamat" type="text" placeholder="Masukkan Alamat Lengkap"></textarea>
+                <textarea rows="3" class="form-control" name="alamat" type="text" placeholder="Masukkan Alamat Lengkap" required></textarea>
             </div>
             <div class="row">
                 <div class="col-md-6 form-group">
                     <label>Expedisi</label>
-                    <select name="expedisi" class="custom-select">
+                    <select name="expedisi" class="custom-select" required>
                     </select>
                 </div>
                 <div class="col-md-6 form-group">
                     <label>Estimasi</label>
-                    <select name="paket" class="custom-select">
+                    <select name="paket" class="custom-select" required>
                     </select>
                 </div>
             </div>
@@ -114,18 +122,14 @@
         <div class="col-lg-5 mb-5">
             <h5 class="font-weight-semi-bold mb-3">Pilihan Custom</h5>
             <p>Admin akan melakukan update harga custom sesuai model yang telah diajukan. </p>
+            <p>Link Cara Mengkukur Ukuran Badan Ada! <a href="https://id.wikihow.com/Mengukur-Badan-untuk-Membuat-Baju">Klik Here!!</a></p>
             <div class="d-flex flex-column mb-3">
-                <h5 class="font-weight-semi-bold mb-3">Store 1</h5>
-                <p class="mb-2"><i class="fa fa-map-marker-alt text-primary mr-3"></i>123 Street, New York, USA</p>
-                <p class="mb-2"><i class="fa fa-envelope text-primary mr-3"></i>info@example.com</p>
+                <h5 class="font-weight-semi-bold mb-3">Store</h5>
+                <p class="mb-2"><i class="fa fa-map-marker-alt text-primary mr-3"></i>Kuningan, Jawa Barat</p>
+                <p class="mb-2"><i class="fa fa-envelope text-primary mr-3"></i>rjpumira@gmail.com</p>
                 <p class="mb-2"><i class="fa fa-phone-alt text-primary mr-3"></i>+012 345 67890</p>
             </div>
-            <div class="d-flex flex-column">
-                <h5 class="font-weight-semi-bold mb-3">Store 2</h5>
-                <p class="mb-2"><i class="fa fa-map-marker-alt text-primary mr-3"></i>123 Street, New York, USA</p>
-                <p class="mb-2"><i class="fa fa-envelope text-primary mr-3"></i>info@example.com</p>
-                <p class="mb-0"><i class="fa fa-phone-alt text-primary mr-3"></i>+012 345 67890</p>
-            </div>
+
         </div>
     </div>
 </div>

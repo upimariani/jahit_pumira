@@ -11,6 +11,7 @@ class mTransaksi extends CI_Model
         $data['proses'] = $this->db->query('SELECT * FROM `transaksi` JOIN customer ON transaksi.id_customer = customer.id_customer WHERE status_order=2 AND status_pesan=2')->result();
         $data['kirim'] = $this->db->query('SELECT * FROM `transaksi` JOIN customer ON transaksi.id_customer = customer.id_customer WHERE status_order=3 AND status_pesan=2')->result();
         $data['selesai'] = $this->db->query('SELECT * FROM `transaksi` JOIN customer ON transaksi.id_customer = customer.id_customer WHERE status_order=4 AND status_pesan=2')->result();
+        $data['pengembalian'] = $this->db->query('SELECT * FROM `transaksi` JOIN customer ON transaksi.id_customer = customer.id_customer WHERE status_order=5')->result();
         return $data;
     }
     public function konfirmasi($id, $data)

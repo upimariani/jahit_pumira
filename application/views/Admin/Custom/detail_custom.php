@@ -82,7 +82,7 @@
                             </thead>
                             <tbody>
                                 <tr>
-                                    <td><?= $detail['custom']->nama_bahan ?></td>
+                                    <td><?= $detail['custom']->nama_kain ?></td>
                                     <td><?= $detail['custom']->pjng_baju ?></td>
                                     <td><?= $detail['custom']->pjng_lengan ?></td>
                                     <td><?= $detail['custom']->bahu ?></td>

@@ -12,10 +12,13 @@ class Laporan extends CI_Controller
 
     public function index()
     {
+        $data = array(
+            'laporan' => $this->mLaporan->laporan()
+        );
         $this->load->view('Pemilik/Layouts/head');
         $this->load->view('Pemilik/Layouts/header');
         $this->load->view('Pemilik/Layouts/aside');
-        $this->load->view('Pemilik/lap_transaksi');
+        $this->load->view('Pemilik/lap_transaksi', $data);
         $this->load->view('Pemilik/Layouts/footer');
     }
 
@@ -29,7 +32,8 @@ class Laporan extends CI_Controller
             'tanggal' => $tanggal,
             'bulan' => $bulan,
             'tahun' => $tahun,
-            'laporan' => $this->mLaporan->lap_harian($tanggal, $bulan, $tahun)
+            'laporan' => $this->mLaporan->lap_harian($tanggal, $bulan, $tahun),
+            'grafik_harian' => $this->mLaporan->grafik_harian($tanggal, $bulan, $tahun)
         );
         $this->load->view('Pemilik/Layouts/head');
         $this->load->view('Pemilik/Layouts/header');
@@ -45,7 +49,8 @@ class Laporan extends CI_Controller
         $data = array(
             'bulan' => $bulan,
             'tahun' => $tahun,
-            'laporan' => $this->mLaporan->lap_bulanan($bulan, $tahun)
+            'laporan' => $this->mLaporan->lap_bulanan($bulan, $tahun),
+            'grafik_bulanan' => $this->mLaporan->grafik_bulanan($bulan, $tahun)
         );
         $this->load->view('Pemilik/Layouts/head');
         $this->load->view('Pemilik/Layouts/header');
@@ -59,7 +64,8 @@ class Laporan extends CI_Controller
 
         $data = array(
             'tahun' => $tahun,
-            'laporan' => $this->mLaporan->lap_tahunan($tahun)
+            'laporan' => $this->mLaporan->lap_tahunan($tahun),
+            'grafik_tahunan' => $this->mLaporan->grafik_tahunan($tahun)
         );
         $this->load->view('Pemilik/Layouts/head');
         $this->load->view('Pemilik/Layouts/header');

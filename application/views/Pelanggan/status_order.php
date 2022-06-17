@@ -57,6 +57,8 @@
                                     echo '<span class="badge badge-info">Dikirim</span><br>';
                                 } else if ($value->status_order == '4') {
                                     echo '<span class="badge badge-success">Selesai</span><br>';
+                                } else if ($value->status_order == '5') {
+                                    echo '<span class="badge badge-danger">Barang Return</span><br>';
                                 }
                                 ?>
                                 <?php
@@ -92,7 +94,44 @@
                                     <?php
                                     if ($value->status_order == '3') { ?>
                                         <a class="btn btn-primary mt-5" href="<?= base_url('pelanggan/katalog/pesanan_diterima/' . $value->id_transaksi) ?>">Pesanan Diterima</a>
-                                    <?php } ?>
+                                    <?php }
+
+
+                                    if ($value->status_order == '4') {
+                                    ?>
+                                        <br>
+                                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal<?= $value->id_transaksi ?>">
+                                            Return Barang
+                                        </button>
+                                        <!-- Modal -->
+                                            <div class="modal fade" id="exampleModal<?= $value->id_transaksi ?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                <div class="modal-dialog">
+                                                    <form action="<?= base_url('Pelanggan/Katalog/pengembalian_barang/' . $value->id_transaksi) ?>" method="POST">
+                                                        <div class="modal-content">
+                                                            <div class="modal-header">
+                                                                <h5 class="modal-title" id="exampleModalLabel">Return Barang <?= $value->id_transaksi ?></h5>
+                                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                    <span aria-hidden="true">&times;</span>
+                                                                </button>
+                                                            </div>
+                                                            <div class="modal-body">
+                                                                <div class="form-group">
+                                                                    <label for="exampleInputEmail1">Alasan Return</label>
+                                                                    <input type="text" name="alasan" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" required>
+                                                                    <small id="emailHelp" class="form-text text-muted">Silahkan untuk mengisi return barang...</small>
+                                                                </div>
+                                                            </div>
+                                                            <div class="modal-footer">
+                                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                                <button type="submit" class="btn btn-primary">Save changes</button>
+                                                            </div>
+                                                        </div>
+                                                    </form>
+                                                </div>
+                                            </div>
+                                        <?php
+                                    } ?>
+
                             </td>
                             <td>Expedisi: <strong> <?= $value->ekspedisi ?></strong><br>
                                 Estimasi: <?= $value->estimasi ?><br>Alamat:

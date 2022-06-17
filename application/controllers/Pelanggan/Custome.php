@@ -24,12 +24,13 @@ class Custome extends CI_Controller
 
         if ($this->form_validation->run() == FALSE) {
             $data = array(
-                'kategori' => $this->mKelolaDataMaster->select_kategori()
+                'kategori' => $this->mKelolaDataMaster->select_kategori(),
+                'kain' => $this->mKelolaDataMaster->select_kain()
             );
             $this->load->view('Pelanggan/Layouts/head');
             $this->load->view('Pelanggan/Layouts/topend');
             $this->load->view('Pelanggan/Layouts/categori', $data);
-            $this->load->view('Pelanggan/custome');
+            $this->load->view('Pelanggan/custome', $data);
         } else {
             $config['upload_path']          = './asset/model-baju';
             $config['allowed_types']        = 'gif|jpg|png';
@@ -66,7 +67,7 @@ class Custome extends CI_Controller
 
                 $custom = array(
                     'id_transaksi' => $this->input->post('id_transaksi'),
-                    'nama_bahan' => $this->input->post('nama'),
+                    'id_kain' => $this->input->post('nama'),
                     'pjng_baju' => $this->input->post('pjng_baju'),
                     'pjng_lengan' => $this->input->post('pjng_lengan'),
                     'bahu' => $this->input->post('bahu'),

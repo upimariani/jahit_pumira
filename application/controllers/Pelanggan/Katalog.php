@@ -209,6 +209,24 @@ class Katalog extends CI_Controller
         $this->session->set_flashdata('success', 'Pesanan Anda Sudah Diterima!');
         redirect('pelanggan/katalog/status_order');
     }
+
+    public function pengembalian_barang($id)
+    {
+        $data = array(
+            'id_transaksi' => $id,
+            'tgl_return' => date('Y-m-d'),
+            'alasan' => $this->input->post('alasan')
+        );
+        $this->db->insert('pengembalian', $data);
+
+        $status_return = array(
+            'status_order' => '5'
+        );
+        $this->db->where('id_transaksi', $id);
+        $this->db->update('transaksi', $status_return);
+        $this->session->set_flashdata('success', 'Pesanan Anda Sudah Berhasil Diproses Return!');
+        redirect('pelanggan/katalog/status_order');
+    }
 }
 
 /* End of file Katalog.php */

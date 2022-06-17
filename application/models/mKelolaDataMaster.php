@@ -177,6 +177,28 @@ class mKelolaDataMaster extends CI_Model
         $this->db->where('produk.id_produk', $id);
         return $this->db->get()->result();
     }
+
+    //kelola kain custom
+    public function insert_kain($data)
+    {
+        $this->db->insert('kain', $data);
+    }
+    public function select_kain()
+    {
+        $this->db->select('*');
+        $this->db->from('kain');
+        return $this->db->get()->result();
+    }
+    public function update_bahan($id, $data)
+    {
+        $this->db->where('id_kain', $id);
+        $this->db->update('kain', $data);
+    }
+    public function delete_bahan($id)
+    {
+        $this->db->where('id_kain', $id);
+        $this->db->delete('kain');
+    }
 }
                         
 /* End of file KelolaDataMaster.php */

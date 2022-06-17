@@ -13,7 +13,7 @@
                     <thead>
                         <tr>
                             <th>Nama Bahan</th>
-                            <td><?= $dcustom->nama_bahan ?></td>
+                            <td><?= $dcustom->nama_kain ?></td>
                         </tr>
                         <tr>
                             <th>Panjang Baju</th>

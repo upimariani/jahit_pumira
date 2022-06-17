@@ -172,5 +172,13 @@
                     </div>
                 </div>
             </div>
+            <div class="row">
+                <div class="col-12 table-responsive">
+                    <canvas id="laporan" height="100"></canvas>
+
+
+                </div>
+                <!-- /.col -->
+            </div>
         </div>
     </section>

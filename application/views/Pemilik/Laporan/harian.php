@@ -76,6 +76,15 @@
                                 </div>
                                 <!-- /.col -->
                             </div>
+                            <div class="row">
+                                <div class="col-12 table-responsive">
+                                    <canvas id="grafik_harian" height="100"></canvas>
+
+
+                                </div>
+                                <!-- /.col -->
+                            </div>
+
                             <!-- /.row -->
                             <!-- this row will not appear when printing -->
                             <div class="row no-print">

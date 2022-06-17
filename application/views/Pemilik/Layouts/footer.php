@@ -12,12 +12,15 @@
 <!-- Vendor JS Files -->
 <script src="<?= base_url('asset/NiceAdmin/') ?>assets/vendor/apexcharts/apexcharts.min.js"></script>
 <script src="<?= base_url('asset/NiceAdmin/') ?>assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-<script src="<?= base_url('asset/NiceAdmin/') ?>assets/vendor/chart.js/chart.min.js"></script>
-<script src="<?= base_url('asset/NiceAdmin/') ?>assets/vendor/echarts/echarts.min.js"></script>
+<!-- <script src="<?= base_url('asset/NiceAdmin/') ?>assets/vendor/chart.js/chart.min.js"></script> -->
+<!-- <script src="<?= base_url('asset/NiceAdmin/') ?>assets/vendor/echarts/echarts.min.js"></script> -->
 <script src="<?= base_url('asset/NiceAdmin/') ?>assets/vendor/quill/quill.min.js"></script>
 <script src="<?= base_url('asset/NiceAdmin/assets/vendor/simple-datatables/simple-datatables.js') ?>"></script>
 <script src="<?= base_url('asset/NiceAdmin/') ?>assets/vendor/tinymce/tinymce.min.js"></script>
 <script src="<?= base_url('asset/NiceAdmin/') ?>assets/vendor/php-email-form/validate.js"></script>
+
+<script src="<?= base_url() ?>asset/chart/dist/Chart.min.js"></script>
+<script src="<?= base_url() ?>asset/chart/samples/utils.js"></script>
 
 <!-- Template Main JS File -->
 <script src="<?= base_url('asset/NiceAdmin/') ?>assets/js/main.js"></script>
@@ -28,6 +31,536 @@
             $(this).remove();
         });
     }, 3000)
+</script>
+<script>
+    <?php
+    foreach ($grafik_harian as $key => $value) {
+        $nama_obat[] = $value->tgl_transaksi;
+        $total_obat[] = $value->total;
+    }
+    ?>
+    var ctx = document.getElementById('grafik_harian');
+    var grafik_harian = new Chart(ctx, {
+        type: 'bar',
+        data: {
+            labels: <?= json_encode($nama_obat) ?>,
+            datasets: [{
+                label: 'Grafik Analisis Transaksi Perhari',
+                data: <?= json_encode($total_obat) ?>,
+                backgroundColor: [
+                    'rgba(255, 99, 132, 0.80)',
+                    'rgba(54, 162, 235, 0.80)',
+                    'rgba(255, 206, 86, 0.80)',
+                    'rgba(75, 192, 192, 0.80)',
+                    'rgba(153, 102, 255, 0.80)',
+                    'rgba(255, 159, 64, 0.80)',
+                    'rgba(201, 76, 76, 0.3)',
+                    'rgba(201, 77, 77, 1)',
+                    'rgba(0, 140, 162, 1)',
+                    'rgba(158, 109, 8, 1)',
+                    'rgba(201, 76, 76, 0.8)',
+                    'rgba(0, 129, 212, 1)',
+                    'rgba(201, 77, 201, 1)',
+                    'rgba(255, 207, 207, 1)',
+                    'rgba(201, 77, 77, 1)',
+                    'rgba(128, 98, 98, 1)',
+                    'rgba(0, 0, 0, 1)',
+                    'rgba(128, 128, 128, 1)',
+                    'rgba(255, 99, 132, 0.80)',
+                    'rgba(54, 162, 235, 0.80)',
+                    'rgba(255, 206, 86, 0.80)',
+                    'rgba(75, 192, 192, 0.80)',
+                    'rgba(153, 102, 255, 0.80)',
+                    'rgba(255, 159, 64, 0.80)',
+                    'rgba(201, 76, 76, 0.3)',
+                    'rgba(201, 77, 77, 1)',
+                    'rgba(0, 140, 162, 1)',
+                    'rgba(158, 109, 8, 1)',
+                    'rgba(201, 76, 76, 0.8)',
+                    'rgba(0, 129, 212, 1)',
+                    'rgba(201, 77, 201, 1)',
+                    'rgba(255, 207, 207, 1)',
+                    'rgba(201, 77, 77, 1)',
+                    'rgba(128, 98, 98, 1)',
+                    'rgba(0, 0, 0, 1)',
+                    'rgba(128, 128, 128, 1)'
+                ],
+                borderColor: [
+                    'rgba(255, 99, 132, 1)',
+                    'rgba(54, 162, 235, 1)',
+                    'rgba(255, 206, 86, 1)',
+                    'rgba(75, 192, 192, 1)',
+                    'rgba(153, 102, 255, 1)',
+                    'rgba(255, 159, 64, 1)',
+                    'rgba(201, 76, 76, 0.3)',
+                    'rgba(201, 77, 77, 1)',
+                    'rgba(0, 140, 162, 1)',
+                    'rgba(158, 109, 8, 1)',
+                    'rgba(201, 76, 76, 0.8)',
+                    'rgba(0, 129, 212, 1)',
+                    'rgba(201, 77, 201, 1)',
+                    'rgba(255, 207, 207, 1)',
+                    'rgba(201, 77, 77, 1)',
+                    'rgba(128, 98, 98, 1)',
+                    'rgba(0, 0, 0, 1)',
+                    'rgba(128, 128, 128, 1)',
+                    'rgba(255, 99, 132, 1)',
+                    'rgba(54, 162, 235, 1)',
+                    'rgba(255, 206, 86, 1)',
+                    'rgba(75, 192, 192, 1)',
+                    'rgba(153, 102, 255, 1)',
+                    'rgba(255, 159, 64, 1)',
+                    'rgba(201, 76, 76, 0.3)',
+                    'rgba(201, 77, 77, 1)',
+                    'rgba(0, 140, 162, 1)',
+                    'rgba(158, 109, 8, 1)',
+                    'rgba(201, 76, 76, 0.8)',
+                    'rgba(0, 129, 212, 1)',
+                    'rgba(201, 77, 201, 1)',
+                    'rgba(255, 207, 207, 1)',
+                    'rgba(201, 77, 77, 1)',
+                    'rgba(128, 98, 98, 1)',
+                    'rgba(0, 0, 0, 1)',
+                    'rgba(128, 128, 128, 1)'
+                ],
+                fill: false,
+                borderWidth: 1
+            }]
+        },
+        options: {
+            scales: {
+                yAxes: [{
+                    ticks: {
+                        beginAtZero: true
+                    }
+                }]
+            }
+        }
+    });
+</script>
+<script>
+    <?php
+    foreach ($grafik_harian as $key => $value) {
+        $nama_obat[] = $value->tgl_transaksi;
+        $total_obat[] = $value->total;
+    }
+    ?>
+    var ctx = document.getElementById('grafik_harian');
+    var grafik_harian = new Chart(ctx, {
+        type: 'bar',
+        data: {
+            labels: <?= json_encode($nama_obat) ?>,
+            datasets: [{
+                label: 'Grafik Analisis Transaksi Perhari',
+                data: <?= json_encode($total_obat) ?>,
+                backgroundColor: [
+                    'rgba(255, 99, 132, 0.80)',
+                    'rgba(54, 162, 235, 0.80)',
+                    'rgba(255, 206, 86, 0.80)',
+                    'rgba(75, 192, 192, 0.80)',
+                    'rgba(153, 102, 255, 0.80)',
+                    'rgba(255, 159, 64, 0.80)',
+                    'rgba(201, 76, 76, 0.3)',
+                    'rgba(201, 77, 77, 1)',
+                    'rgba(0, 140, 162, 1)',
+                    'rgba(158, 109, 8, 1)',
+                    'rgba(201, 76, 76, 0.8)',
+                    'rgba(0, 129, 212, 1)',
+                    'rgba(201, 77, 201, 1)',
+                    'rgba(255, 207, 207, 1)',
+                    'rgba(201, 77, 77, 1)',
+                    'rgba(128, 98, 98, 1)',
+                    'rgba(0, 0, 0, 1)',
+                    'rgba(128, 128, 128, 1)',
+                    'rgba(255, 99, 132, 0.80)',
+                    'rgba(54, 162, 235, 0.80)',
+                    'rgba(255, 206, 86, 0.80)',
+                    'rgba(75, 192, 192, 0.80)',
+                    'rgba(153, 102, 255, 0.80)',
+                    'rgba(255, 159, 64, 0.80)',
+                    'rgba(201, 76, 76, 0.3)',
+                    'rgba(201, 77, 77, 1)',
+                    'rgba(0, 140, 162, 1)',
+                    'rgba(158, 109, 8, 1)',
+                    'rgba(201, 76, 76, 0.8)',
+                    'rgba(0, 129, 212, 1)',
+                    'rgba(201, 77, 201, 1)',
+                    'rgba(255, 207, 207, 1)',
+                    'rgba(201, 77, 77, 1)',
+                    'rgba(128, 98, 98, 1)',
+                    'rgba(0, 0, 0, 1)',
+                    'rgba(128, 128, 128, 1)'
+                ],
+                borderColor: [
+                    'rgba(255, 99, 132, 1)',
+                    'rgba(54, 162, 235, 1)',
+                    'rgba(255, 206, 86, 1)',
+                    'rgba(75, 192, 192, 1)',
+                    'rgba(153, 102, 255, 1)',
+                    'rgba(255, 159, 64, 1)',
+                    'rgba(201, 76, 76, 0.3)',
+                    'rgba(201, 77, 77, 1)',
+                    'rgba(0, 140, 162, 1)',
+                    'rgba(158, 109, 8, 1)',
+                    'rgba(201, 76, 76, 0.8)',
+                    'rgba(0, 129, 212, 1)',
+                    'rgba(201, 77, 201, 1)',
+                    'rgba(255, 207, 207, 1)',
+                    'rgba(201, 77, 77, 1)',
+                    'rgba(128, 98, 98, 1)',
+                    'rgba(0, 0, 0, 1)',
+                    'rgba(128, 128, 128, 1)',
+                    'rgba(255, 99, 132, 1)',
+                    'rgba(54, 162, 235, 1)',
+                    'rgba(255, 206, 86, 1)',
+                    'rgba(75, 192, 192, 1)',
+                    'rgba(153, 102, 255, 1)',
+                    'rgba(255, 159, 64, 1)',
+                    'rgba(201, 76, 76, 0.3)',
+                    'rgba(201, 77, 77, 1)',
+                    'rgba(0, 140, 162, 1)',
+                    'rgba(158, 109, 8, 1)',
+                    'rgba(201, 76, 76, 0.8)',
+                    'rgba(0, 129, 212, 1)',
+                    'rgba(201, 77, 201, 1)',
+                    'rgba(255, 207, 207, 1)',
+                    'rgba(201, 77, 77, 1)',
+                    'rgba(128, 98, 98, 1)',
+                    'rgba(0, 0, 0, 1)',
+                    'rgba(128, 128, 128, 1)'
+                ],
+                fill: false,
+                borderWidth: 1
+            }]
+        },
+        options: {
+            scales: {
+                yAxes: [{
+                    ticks: {
+                        beginAtZero: true
+                    }
+                }]
+            }
+        }
+    });
+</script>
+<script>
+    <?php
+    foreach ($grafik_bulanan as $key => $value) {
+        $nama_obat[] = $value->tgl_transaksi;
+        $total_obat[] = $value->total;
+    }
+    ?>
+    var ctx = document.getElementById('grafik_bulanan');
+    var grafik_bulanan = new Chart(ctx, {
+        type: 'bar',
+        data: {
+            labels: <?= json_encode($nama_obat) ?>,
+            datasets: [{
+                label: 'Grafik Analisis Transaksi Perhari',
+                data: <?= json_encode($total_obat) ?>,
+                backgroundColor: [
+                    'rgba(255, 99, 132, 0.80)',
+                    'rgba(54, 162, 235, 0.80)',
+                    'rgba(255, 206, 86, 0.80)',
+                    'rgba(75, 192, 192, 0.80)',
+                    'rgba(153, 102, 255, 0.80)',
+                    'rgba(255, 159, 64, 0.80)',
+                    'rgba(201, 76, 76, 0.3)',
+                    'rgba(201, 77, 77, 1)',
+                    'rgba(0, 140, 162, 1)',
+                    'rgba(158, 109, 8, 1)',
+                    'rgba(201, 76, 76, 0.8)',
+                    'rgba(0, 129, 212, 1)',
+                    'rgba(201, 77, 201, 1)',
+                    'rgba(255, 207, 207, 1)',
+                    'rgba(201, 77, 77, 1)',
+                    'rgba(128, 98, 98, 1)',
+                    'rgba(0, 0, 0, 1)',
+                    'rgba(128, 128, 128, 1)',
+                    'rgba(255, 99, 132, 0.80)',
+                    'rgba(54, 162, 235, 0.80)',
+                    'rgba(255, 206, 86, 0.80)',
+                    'rgba(75, 192, 192, 0.80)',
+                    'rgba(153, 102, 255, 0.80)',
+                    'rgba(255, 159, 64, 0.80)',
+                    'rgba(201, 76, 76, 0.3)',
+                    'rgba(201, 77, 77, 1)',
+                    'rgba(0, 140, 162, 1)',
+                    'rgba(158, 109, 8, 1)',
+                    'rgba(201, 76, 76, 0.8)',
+                    'rgba(0, 129, 212, 1)',
+                    'rgba(201, 77, 201, 1)',
+                    'rgba(255, 207, 207, 1)',
+                    'rgba(201, 77, 77, 1)',
+                    'rgba(128, 98, 98, 1)',
+                    'rgba(0, 0, 0, 1)',
+                    'rgba(128, 128, 128, 1)'
+                ],
+                borderColor: [
+                    'rgba(255, 99, 132, 1)',
+                    'rgba(54, 162, 235, 1)',
+                    'rgba(255, 206, 86, 1)',
+                    'rgba(75, 192, 192, 1)',
+                    'rgba(153, 102, 255, 1)',
+                    'rgba(255, 159, 64, 1)',
+                    'rgba(201, 76, 76, 0.3)',
+                    'rgba(201, 77, 77, 1)',
+                    'rgba(0, 140, 162, 1)',
+                    'rgba(158, 109, 8, 1)',
+                    'rgba(201, 76, 76, 0.8)',
+                    'rgba(0, 129, 212, 1)',
+                    'rgba(201, 77, 201, 1)',
+                    'rgba(255, 207, 207, 1)',
+                    'rgba(201, 77, 77, 1)',
+                    'rgba(128, 98, 98, 1)',
+                    'rgba(0, 0, 0, 1)',
+                    'rgba(128, 128, 128, 1)',
+                    'rgba(255, 99, 132, 1)',
+                    'rgba(54, 162, 235, 1)',
+                    'rgba(255, 206, 86, 1)',
+                    'rgba(75, 192, 192, 1)',
+                    'rgba(153, 102, 255, 1)',
+                    'rgba(255, 159, 64, 1)',
+                    'rgba(201, 76, 76, 0.3)',
+                    'rgba(201, 77, 77, 1)',
+                    'rgba(0, 140, 162, 1)',
+                    'rgba(158, 109, 8, 1)',
+                    'rgba(201, 76, 76, 0.8)',
+                    'rgba(0, 129, 212, 1)',
+                    'rgba(201, 77, 201, 1)',
+                    'rgba(255, 207, 207, 1)',
+                    'rgba(201, 77, 77, 1)',
+                    'rgba(128, 98, 98, 1)',
+                    'rgba(0, 0, 0, 1)',
+                    'rgba(128, 128, 128, 1)'
+                ],
+                fill: false,
+                borderWidth: 1
+            }]
+        },
+        options: {
+            scales: {
+                yAxes: [{
+                    ticks: {
+                        beginAtZero: true
+                    }
+                }]
+            }
+        }
+    });
+</script>
+<script>
+    <?php
+    foreach ($grafik_tahunan as $key => $value) {
+        $nama_obat[] = $value->tgl_transaksi;
+        $total_obat[] = $value->total;
+    }
+    ?>
+    var ctx = document.getElementById('grafik_tahunan');
+    var grafik_tahunan = new Chart(ctx, {
+        type: 'bar',
+        data: {
+            labels: <?= json_encode($nama_obat) ?>,
+            datasets: [{
+                label: 'Grafik Analisis Transaksi Perhari',
+                data: <?= json_encode($total_obat) ?>,
+                backgroundColor: [
+                    'rgba(255, 99, 132, 0.80)',
+                    'rgba(54, 162, 235, 0.80)',
+                    'rgba(255, 206, 86, 0.80)',
+                    'rgba(75, 192, 192, 0.80)',
+                    'rgba(153, 102, 255, 0.80)',
+                    'rgba(255, 159, 64, 0.80)',
+                    'rgba(201, 76, 76, 0.3)',
+                    'rgba(201, 77, 77, 1)',
+                    'rgba(0, 140, 162, 1)',
+                    'rgba(158, 109, 8, 1)',
+                    'rgba(201, 76, 76, 0.8)',
+                    'rgba(0, 129, 212, 1)',
+                    'rgba(201, 77, 201, 1)',
+                    'rgba(255, 207, 207, 1)',
+                    'rgba(201, 77, 77, 1)',
+                    'rgba(128, 98, 98, 1)',
+                    'rgba(0, 0, 0, 1)',
+                    'rgba(128, 128, 128, 1)',
+                    'rgba(255, 99, 132, 0.80)',
+                    'rgba(54, 162, 235, 0.80)',
+                    'rgba(255, 206, 86, 0.80)',
+                    'rgba(75, 192, 192, 0.80)',
+                    'rgba(153, 102, 255, 0.80)',
+                    'rgba(255, 159, 64, 0.80)',
+                    'rgba(201, 76, 76, 0.3)',
+                    'rgba(201, 77, 77, 1)',
+                    'rgba(0, 140, 162, 1)',
+                    'rgba(158, 109, 8, 1)',
+                    'rgba(201, 76, 76, 0.8)',
+                    'rgba(0, 129, 212, 1)',
+                    'rgba(201, 77, 201, 1)',
+                    'rgba(255, 207, 207, 1)',
+                    'rgba(201, 77, 77, 1)',
+                    'rgba(128, 98, 98, 1)',
+                    'rgba(0, 0, 0, 1)',
+                    'rgba(128, 128, 128, 1)'
+                ],
+                borderColor: [
+                    'rgba(255, 99, 132, 1)',
+                    'rgba(54, 162, 235, 1)',
+                    'rgba(255, 206, 86, 1)',
+                    'rgba(75, 192, 192, 1)',
+                    'rgba(153, 102, 255, 1)',
+                    'rgba(255, 159, 64, 1)',
+                    'rgba(201, 76, 76, 0.3)',
+                    'rgba(201, 77, 77, 1)',
+                    'rgba(0, 140, 162, 1)',
+                    'rgba(158, 109, 8, 1)',
+                    'rgba(201, 76, 76, 0.8)',
+                    'rgba(0, 129, 212, 1)',
+                    'rgba(201, 77, 201, 1)',
+                    'rgba(255, 207, 207, 1)',
+                    'rgba(201, 77, 77, 1)',
+                    'rgba(128, 98, 98, 1)',
+                    'rgba(0, 0, 0, 1)',
+                    'rgba(128, 128, 128, 1)',
+                    'rgba(255, 99, 132, 1)',
+                    'rgba(54, 162, 235, 1)',
+                    'rgba(255, 206, 86, 1)',
+                    'rgba(75, 192, 192, 1)',
+                    'rgba(153, 102, 255, 1)',
+                    'rgba(255, 159, 64, 1)',
+                    'rgba(201, 76, 76, 0.3)',
+                    'rgba(201, 77, 77, 1)',
+                    'rgba(0, 140, 162, 1)',
+                    'rgba(158, 109, 8, 1)',
+                    'rgba(201, 76, 76, 0.8)',
+                    'rgba(0, 129, 212, 1)',
+                    'rgba(201, 77, 201, 1)',
+                    'rgba(255, 207, 207, 1)',
+                    'rgba(201, 77, 77, 1)',
+                    'rgba(128, 98, 98, 1)',
+                    'rgba(0, 0, 0, 1)',
+                    'rgba(128, 128, 128, 1)'
+                ],
+                fill: false,
+                borderWidth: 1
+            }]
+        },
+        options: {
+            scales: {
+                yAxes: [{
+                    ticks: {
+                        beginAtZero: true
+                    }
+                }]
+            }
+        }
+    });
+</script>
+<script>
+    <?php
+    foreach ($laporan as $key => $value) {
+        $nama_obat[] = $value->tgl_transaksi;
+        $total_obat[] = $value->total;
+    }
+    ?>
+    var ctx = document.getElementById('laporan');
+    var laporan = new Chart(ctx, {
+        type: 'bar',
+        data: {
+            labels: <?= json_encode($nama_obat) ?>,
+            datasets: [{
+                label: 'Grafik Analisis Transaksi Perhari',
+                data: <?= json_encode($total_obat) ?>,
+                backgroundColor: [
+                    'rgba(255, 99, 132, 0.80)',
+                    'rgba(54, 162, 235, 0.80)',
+                    'rgba(255, 206, 86, 0.80)',
+                    'rgba(75, 192, 192, 0.80)',
+                    'rgba(153, 102, 255, 0.80)',
+                    'rgba(255, 159, 64, 0.80)',
+                    'rgba(201, 76, 76, 0.3)',
+                    'rgba(201, 77, 77, 1)',
+                    'rgba(0, 140, 162, 1)',
+                    'rgba(158, 109, 8, 1)',
+                    'rgba(201, 76, 76, 0.8)',
+                    'rgba(0, 129, 212, 1)',
+                    'rgba(201, 77, 201, 1)',
+                    'rgba(255, 207, 207, 1)',
+                    'rgba(201, 77, 77, 1)',
+                    'rgba(128, 98, 98, 1)',
+                    'rgba(0, 0, 0, 1)',
+                    'rgba(128, 128, 128, 1)',
+                    'rgba(255, 99, 132, 0.80)',
+                    'rgba(54, 162, 235, 0.80)',
+                    'rgba(255, 206, 86, 0.80)',
+                    'rgba(75, 192, 192, 0.80)',
+                    'rgba(153, 102, 255, 0.80)',
+                    'rgba(255, 159, 64, 0.80)',
+                    'rgba(201, 76, 76, 0.3)',
+                    'rgba(201, 77, 77, 1)',
+                    'rgba(0, 140, 162, 1)',
+                    'rgba(158, 109, 8, 1)',
+                    'rgba(201, 76, 76, 0.8)',
+                    'rgba(0, 129, 212, 1)',
+                    'rgba(201, 77, 201, 1)',
+                    'rgba(255, 207, 207, 1)',
+                    'rgba(201, 77, 77, 1)',
+                    'rgba(128, 98, 98, 1)',
+                    'rgba(0, 0, 0, 1)',
+                    'rgba(128, 128, 128, 1)'
+                ],
+                borderColor: [
+                    'rgba(255, 99, 132, 1)',
+                    'rgba(54, 162, 235, 1)',
+                    'rgba(255, 206, 86, 1)',
+                    'rgba(75, 192, 192, 1)',
+                    'rgba(153, 102, 255, 1)',
+                    'rgba(255, 159, 64, 1)',
+                    'rgba(201, 76, 76, 0.3)',
+                    'rgba(201, 77, 77, 1)',
+                    'rgba(0, 140, 162, 1)',
+                    'rgba(158, 109, 8, 1)',
+                    'rgba(201, 76, 76, 0.8)',
+                    'rgba(0, 129, 212, 1)',
+                    'rgba(201, 77, 201, 1)',
+                    'rgba(255, 207, 207, 1)',
+                    'rgba(201, 77, 77, 1)',
+                    'rgba(128, 98, 98, 1)',
+                    'rgba(0, 0, 0, 1)',
+                    'rgba(128, 128, 128, 1)',
+                    'rgba(255, 99, 132, 1)',
+                    'rgba(54, 162, 235, 1)',
+                    'rgba(255, 206, 86, 1)',
+                    'rgba(75, 192, 192, 1)',
+                    'rgba(153, 102, 255, 1)',
+                    'rgba(255, 159, 64, 1)',
+                    'rgba(201, 76, 76, 0.3)',
+                    'rgba(201, 77, 77, 1)',
+                    'rgba(0, 140, 162, 1)',
+                    'rgba(158, 109, 8, 1)',
+                    'rgba(201, 76, 76, 0.8)',
+                    'rgba(0, 129, 212, 1)',
+                    'rgba(201, 77, 201, 1)',
+                    'rgba(255, 207, 207, 1)',
+                    'rgba(201, 77, 77, 1)',
+                    'rgba(128, 98, 98, 1)',
+                    'rgba(0, 0, 0, 1)',
+                    'rgba(128, 128, 128, 1)'
+                ],
+                fill: false,
+                borderWidth: 1
+            }]
+        },
+        options: {
+            scales: {
+                yAxes: [{
+                    ticks: {
+                        beginAtZero: true
+                    }
+                }]
+            }
+        }
+    });
 </script>
 <script>
     $("#hide").click(function() {

@@ -46,6 +46,13 @@
                         <i class="bi bi-circle"></i><span>Diskon</span>
                     </a>
                 </li>
+                <li>
+                    <a href="<?= base_url('Admin/KelolaDataMaster/bahan') ?>" <?php if ($this->uri->segment(1) == 'Admin' && $this->uri->segment(2) == 'KelolaDataMaster' && $this->uri->segment(3) == 'bahan') {
+                                                                                    echo 'class="active"';
+                                                                                }  ?>>
+                        <i class="bi bi-circle"></i><span>Kain Custom</span>
+                    </a>
+                </li>
             </ul>
         </li><!-- End Forms Nav -->
 
@@ -97,6 +104,12 @@
             <a class="nav-link collapsed" href="<?= base_url('Admin/Custom') ?>">
                 <i class="bi bi-grid"></i>
                 <span>Pesanan Custom</span>
+            </a>
+        </li><!-- End Dashboard Nav -->
+        <li class="nav-item">
+            <a class="nav-link collapsed" href="<?= base_url('Admin/Pengembalian') ?>">
+                <i class="bi bi-arrow-repeat"></i>
+                <span>Return Barang</span>
             </a>
         </li><!-- End Dashboard Nav -->
         <li class="nav-item">

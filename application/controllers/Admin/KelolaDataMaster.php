@@ -404,6 +404,45 @@ class KelolaDataMaster extends CI_Controller
         $this->session->set_flashdata('success', 'Data Diskon Berhasil Dihapus!');
         redirect('Admin/KelolaDataMaster/diskon');
     }
+
+    //kelola bahan untuk custom
+    public function bahan()
+    {
+        $this->form_validation->set_rules('nama', 'Nama Kain', 'required');
+
+        if ($this->form_validation->run() == FALSE) {
+            $data = array(
+                'kain' => $this->mKelolaDataMaster->select_kain()
+            );
+            $this->load->view('Admin/layouts/head');
+            $this->load->view('Admin/layouts/header');
+            $this->load->view('Admin/layouts/aside');
+            $this->load->view('Admin/BahanCustom/bahan', $data);
+            $this->load->view('Admin/layouts/footer');
+        } else {
+            $data = array(
+                'nama_kain' => $this->input->post('nama')
+            );
+            $this->mKelolaDataMaster->insert_kain($data);
+            $this->session->set_flashdata('success', 'Data Bahan Kain Berhasil Ditambahkan!');
+            redirect('Admin/KelolaDataMaster/bahan');
+        }
+    }
+    public function update_bahan($id)
+    {
+        $data = array(
+            'nama_kain' => $this->input->post('nama')
+        );
+        $this->mKelolaDataMaster->update_bahan($id, $data);
+        $this->session->set_flashdata('success', 'Data Bahan Kain Berhasil Diperbaharui!');
+        redirect('Admin/KelolaDataMaster/bahan');
+    }
+    public function delete_kain($id)
+    {
+        $this->mKelolaDataMaster->delete_bahan($id);
+        $this->session->set_flashdata('success', 'Data Bahan Kain Berhasil Dihapus!');
+        redirect('Admin/KelolaDataMaster/bahan');
+    }
 }
         
     /* End of file  KelolaDataMaster.php */

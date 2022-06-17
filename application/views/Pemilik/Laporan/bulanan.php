@@ -75,7 +75,14 @@
                                 <!-- /.col -->
                             </div>
                             <!-- /.row -->
+                            <div class="row">
+                                <div class="col-12 table-responsive">
+                                    <canvas id="grafik_bulanan" height="100"></canvas>
 
+
+                                </div>
+                                <!-- /.col -->
+                            </div>
 
 
                             <!-- this row will not appear when printing -->

@@ -1,14 +1,13 @@
 -- phpMyAdmin SQL Dump
--- version 4.9.0.1
+-- version 5.1.1
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 07 Jun 2022 pada 14.16
--- Versi server: 10.4.6-MariaDB
--- Versi PHP: 7.3.9
+-- Generation Time: Jun 17, 2022 at 07:59 AM
+-- Server version: 10.4.20-MariaDB
+-- PHP Version: 7.4.22
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET AUTOCOMMIT = 0;
 START TRANSACTION;
 SET time_zone = "+00:00";
 
@@ -25,7 +24,7 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `chatting`
+-- Table structure for table `chatting`
 --
 
 CREATE TABLE `chatting` (
@@ -40,13 +39,13 @@ CREATE TABLE `chatting` (
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `custom`
+-- Table structure for table `custom`
 --
 
 CREATE TABLE `custom` (
   `id_custom` int(11) NOT NULL,
+  `id_kain` int(11) NOT NULL,
   `id_transaksi` varchar(20) NOT NULL,
-  `nama_bahan` varchar(20) NOT NULL,
   `pjng_baju` varchar(10) NOT NULL,
   `pjng_lengan` varchar(10) NOT NULL,
   `bahu` varchar(10) NOT NULL,
@@ -55,19 +54,20 @@ CREATE TABLE `custom` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data untuk tabel `custom`
+-- Dumping data for table `custom`
 --
 
-INSERT INTO `custom` (`id_custom`, `id_transaksi`, `nama_bahan`, `pjng_baju`, `pjng_lengan`, `bahu`, `pundak`, `gambar_model`) VALUES
-(1, '20220413RGAHNKJC', 'UPI MARIAN', '12', '67', '23', '67', 'js2.jpg'),
-(2, '20220425YP1S4QMJ', 'Rayon', '122', '23', '12', '10', 'IMG-20210722-WA0001.jpg'),
-(3, '20220529TKEFIJ9U', 'Satin', '120', '64', '24', '32', 'gambar.gif'),
-(4, '20220607QO4SNGJ3', 'Bahan Linen', '64', '12', '9', '6', 'download_(1).png');
+INSERT INTO `custom` (`id_custom`, `id_kain`, `id_transaksi`, `pjng_baju`, `pjng_lengan`, `bahu`, `pundak`, `gambar_model`) VALUES
+(1, 3, '20220413RGAHNKJC', '12', '67', '23', '67', 'js2.jpg'),
+(2, 4, '20220425YP1S4QMJ', '122', '23', '12', '10', 'IMG-20210722-WA0001.jpg'),
+(3, 5, '20220529TKEFIJ9U', '120', '64', '24', '32', 'gambar.gif'),
+(4, 3, '20220607QO4SNGJ3', '64', '12', '9', '6', 'download_(1).png'),
+(5, 3, '20220617UQO6LMUT', '12', '67', '12', '67', 'c2.jpg');
 
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `customer`
+-- Table structure for table `customer`
 --
 
 CREATE TABLE `customer` (
@@ -81,7 +81,7 @@ CREATE TABLE `customer` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data untuk tabel `customer`
+-- Dumping data for table `customer`
 --
 
 INSERT INTO `customer` (`id_customer`, `nama_customer`, `alamat_customer`, `no_hp`, `username`, `password`, `create_time`) VALUES
@@ -93,7 +93,7 @@ INSERT INTO `customer` (`id_customer`, `nama_customer`, `alamat_customer`, `no_h
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `detail_transaksi`
+-- Table structure for table `detail_transaksi`
 --
 
 CREATE TABLE `detail_transaksi` (
@@ -104,7 +104,7 @@ CREATE TABLE `detail_transaksi` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data untuk tabel `detail_transaksi`
+-- Dumping data for table `detail_transaksi`
 --
 
 INSERT INTO `detail_transaksi` (`id_detail`, `id_transaksi`, `id_size`, `qty`) VALUES
@@ -124,12 +124,14 @@ INSERT INTO `detail_transaksi` (`id_detail`, `id_transaksi`, `id_size`, `qty`) V
 (14, '20220529EVYBRXJU', 4, '4'),
 (15, '20220607LHE25YFP', 4, '1'),
 (16, '20220607LHE25YFP', 6, '2'),
-(17, '20220607LHE25YFP', 7, '1');
+(17, '20220607LHE25YFP', 7, '1'),
+(18, '202206173FDY2EMK', 4, '1'),
+(19, '202206173FDY2EMK', 15, '1');
 
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `diskon`
+-- Table structure for table `diskon`
 --
 
 CREATE TABLE `diskon` (
@@ -141,7 +143,7 @@ CREATE TABLE `diskon` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data untuk tabel `diskon`
+-- Dumping data for table `diskon`
 --
 
 INSERT INTO `diskon` (`id_diskon`, `id_produk`, `nama_diskon`, `besar_diskon`, `tgl_selesai`) VALUES
@@ -158,7 +160,30 @@ INSERT INTO `diskon` (`id_diskon`, `id_produk`, `nama_diskon`, `besar_diskon`, `
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `kategori`
+-- Table structure for table `kain`
+--
+
+CREATE TABLE `kain` (
+  `id_kain` int(11) NOT NULL,
+  `nama_kain` varchar(125) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `kain`
+--
+
+INSERT INTO `kain` (`id_kain`, `nama_kain`) VALUES
+(3, 'Katun'),
+(4, 'Linen'),
+(5, 'Denim'),
+(6, 'Organza'),
+(7, 'Spandeks'),
+(8, 'Sifon');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `kategori`
 --
 
 CREATE TABLE `kategori` (
@@ -167,7 +192,7 @@ CREATE TABLE `kategori` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data untuk tabel `kategori`
+-- Dumping data for table `kategori`
 --
 
 INSERT INTO `kategori` (`id_kategori`, `nama_kategori`) VALUES
@@ -177,7 +202,27 @@ INSERT INTO `kategori` (`id_kategori`, `nama_kategori`) VALUES
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `produk`
+-- Table structure for table `pengembalian`
+--
+
+CREATE TABLE `pengembalian` (
+  `id_return` int(11) NOT NULL,
+  `id_transaksi` varchar(30) NOT NULL,
+  `tgl_return` varchar(15) NOT NULL,
+  `alasan` text NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `pengembalian`
+--
+
+INSERT INTO `pengembalian` (`id_return`, `id_transaksi`, `tgl_return`, `alasan`) VALUES
+(1, '20220529EVYBRXJU', '2022-06-17', 'salah warna');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `produk`
 --
 
 CREATE TABLE `produk` (
@@ -190,7 +235,7 @@ CREATE TABLE `produk` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data untuk tabel `produk`
+-- Dumping data for table `produk`
 --
 
 INSERT INTO `produk` (`id_produk`, `id_kategori`, `nama_produk`, `deskripsi`, `gambar`, `berat`) VALUES
@@ -207,7 +252,7 @@ INSERT INTO `produk` (`id_produk`, `id_kategori`, `nama_produk`, `deskripsi`, `g
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `size`
+-- Table structure for table `size`
 --
 
 CREATE TABLE `size` (
@@ -219,14 +264,14 @@ CREATE TABLE `size` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data untuk tabel `size`
+-- Dumping data for table `size`
 --
 
 INSERT INTO `size` (`id_size`, `id_produk`, `size`, `stok`, `harga`) VALUES
 (1, 1, 'S', '7', '95000'),
 (2, 1, 'L', '5', '100000'),
 (3, 1, 'XL', '16', '150000'),
-(4, 2, 'L', '0', '100000'),
+(4, 2, 'L', '-1', '100000'),
 (5, 2, 'XL', '20', '150000'),
 (6, 12, 'S', '7', '75000'),
 (7, 12, 'L', '4', '80000'),
@@ -237,7 +282,7 @@ INSERT INTO `size` (`id_size`, `id_produk`, `size`, `stok`, `harga`) VALUES
 (12, 14, 'XL', '9', '60000'),
 (13, 15, 'L', '11', '50000'),
 (14, 15, 'XL', '5', '65000'),
-(15, 16, 'L', '19', '80000'),
+(15, 16, 'L', '18', '80000'),
 (16, 16, 'XL', '4', '85000'),
 (17, 17, 'L', '10', '70000'),
 (18, 18, 'XL', '15', '75000');
@@ -245,7 +290,7 @@ INSERT INTO `size` (`id_size`, `id_produk`, `size`, `stok`, `harga`) VALUES
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `transaksi`
+-- Table structure for table `transaksi`
 --
 
 CREATE TABLE `transaksi` (
@@ -266,7 +311,7 @@ CREATE TABLE `transaksi` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data untuk tabel `transaksi`
+-- Dumping data for table `transaksi`
 --
 
 INSERT INTO `transaksi` (`id_transaksi`, `id_customer`, `tgl_transaksi`, `alamat`, `provinsi`, `kota`, `ekspedisi`, `estimasi`, `ongkir`, `status_order`, `status_pesan`, `update_at`, `total_bayar`, `bukti_pembayaran`) VALUES
@@ -280,15 +325,17 @@ INSERT INTO `transaksi` (`id_transaksi`, `id_customer`, `tgl_transaksi`, `alamat
 ('20220414WKHUDIFY', 1, '2022-04-14', 'LINK.KRAMAT JAYA RT/RW 007/003', 'Kalimantan Utara', 'Malinau', 'jne', 'OKE', '73000', 0, 2, '2022-04-14 03:03:31', '213000', ''),
 ('20220425W1WDFVKE', 3, '2022-04-25', 'progo 5', 'DI Yogyakarta', 'Kulon Progo', 'jne', 'OKE', '19000', 4, 2, '2022-04-25 06:25:06', '169000', '20170910027UpiMariani.jpg'),
 ('20220425YP1S4QMJ', 3, '2022-04-25', 'Kuningan Jawa Barat', 'Kalimantan Timur', 'Paser', 'jne', '5-7 Hari', '57000', 4, 1, '2022-04-25 06:42:46', '125000', '20170910027UpiMariani1.jpg'),
-('20220529EVYBRXJU', 4, '2022-05-29', 'Ling Kramat Jaya', 'Jawa Barat', 'Kuningan', 'jne', 'CTC', '14000', 4, 2, '2022-05-29 03:10:10', '584000', 'download.jpg'),
+('20220529EVYBRXJU', 4, '2022-05-29', 'Ling Kramat Jaya', 'Jawa Barat', 'Kuningan', 'jne', 'CTC', '14000', 5, 2, '2022-05-29 03:10:10', '584000', 'download.jpg'),
 ('20220529TKEFIJ9U', 4, '2022-05-29', 'assas', 'Jawa Barat', 'Kuningan', 'jne', '1-2 Hari', '7000', 4, 1, '2022-05-29 03:20:13', '107000', 'download1.jpg'),
 ('20220607LHE25YFP', 4, '2022-06-07', 'LINK.KRAMAT JAYA RT/RW 007/003', 'Jawa Barat', 'Kuningan', 'jne', 'CTC', '7000', 4, 2, '2022-06-07 11:33:30', '337000', 'download2.jpg'),
-('20220607QO4SNGJ3', 4, '2022-06-07', 'Cipicung', 'Jawa Barat', 'Kuningan', 'tiki', '1 Hari', '13000', 4, 1, '2022-06-07 11:42:04', '150000', 'gambar.gif');
+('20220607QO4SNGJ3', 4, '2022-06-07', 'Cipicung', 'Jawa Barat', 'Kuningan', 'tiki', '1 Hari', '13000', 4, 1, '2022-06-07 11:42:04', '150000', 'gambar.gif'),
+('202206173FDY2EMK', 4, '2022-06-17', 'LINK.KRAMAT JAYA RT/RW 007/003', 'Jawa Barat', 'Kuningan', 'jne', 'CTCYES', '9000', 4, 2, '2022-06-17 00:36:43', '189000', 'e.jpg'),
+('20220617UQO6LMUT', 4, '2022-06-17', 'asasa', 'Jawa Barat', 'Kuningan', 'jne', '1-2 Hari', '7000', 0, 1, '2022-06-16 23:59:26', '0', '');
 
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `user`
+-- Table structure for table `user`
 --
 
 CREATE TABLE `user` (
@@ -302,7 +349,7 @@ CREATE TABLE `user` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data untuk tabel `user`
+-- Dumping data for table `user`
 --
 
 INSERT INTO `user` (`id_user`, `nama_user`, `alamat_user`, `no_hp`, `username`, `password`, `level_user`) VALUES
@@ -314,119 +361,143 @@ INSERT INTO `user` (`id_user`, `nama_user`, `alamat_user`, `no_hp`, `username`, 
 --
 
 --
--- Indeks untuk tabel `chatting`
+-- Indexes for table `chatting`
 --
 ALTER TABLE `chatting`
   ADD PRIMARY KEY (`id_chatting`);
 
 --
--- Indeks untuk tabel `custom`
+-- Indexes for table `custom`
 --
 ALTER TABLE `custom`
   ADD PRIMARY KEY (`id_custom`);
 
 --
--- Indeks untuk tabel `customer`
+-- Indexes for table `customer`
 --
 ALTER TABLE `customer`
   ADD PRIMARY KEY (`id_customer`);
 
 --
--- Indeks untuk tabel `detail_transaksi`
+-- Indexes for table `detail_transaksi`
 --
 ALTER TABLE `detail_transaksi`
   ADD PRIMARY KEY (`id_detail`);
 
 --
--- Indeks untuk tabel `diskon`
+-- Indexes for table `diskon`
 --
 ALTER TABLE `diskon`
   ADD PRIMARY KEY (`id_diskon`);
 
 --
--- Indeks untuk tabel `kategori`
+-- Indexes for table `kain`
+--
+ALTER TABLE `kain`
+  ADD PRIMARY KEY (`id_kain`);
+
+--
+-- Indexes for table `kategori`
 --
 ALTER TABLE `kategori`
   ADD PRIMARY KEY (`id_kategori`);
 
 --
--- Indeks untuk tabel `produk`
+-- Indexes for table `pengembalian`
+--
+ALTER TABLE `pengembalian`
+  ADD PRIMARY KEY (`id_return`);
+
+--
+-- Indexes for table `produk`
 --
 ALTER TABLE `produk`
   ADD PRIMARY KEY (`id_produk`);
 
 --
--- Indeks untuk tabel `size`
+-- Indexes for table `size`
 --
 ALTER TABLE `size`
   ADD PRIMARY KEY (`id_size`);
 
 --
--- Indeks untuk tabel `transaksi`
+-- Indexes for table `transaksi`
 --
 ALTER TABLE `transaksi`
   ADD PRIMARY KEY (`id_transaksi`);
 
 --
--- Indeks untuk tabel `user`
+-- Indexes for table `user`
 --
 ALTER TABLE `user`
   ADD PRIMARY KEY (`id_user`);
 
 --
--- AUTO_INCREMENT untuk tabel yang dibuang
+-- AUTO_INCREMENT for dumped tables
 --
 
 --
--- AUTO_INCREMENT untuk tabel `chatting`
+-- AUTO_INCREMENT for table `chatting`
 --
 ALTER TABLE `chatting`
   MODIFY `id_chatting` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT untuk tabel `custom`
+-- AUTO_INCREMENT for table `custom`
 --
 ALTER TABLE `custom`
-  MODIFY `id_custom` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id_custom` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
--- AUTO_INCREMENT untuk tabel `customer`
+-- AUTO_INCREMENT for table `customer`
 --
 ALTER TABLE `customer`
   MODIFY `id_customer` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
--- AUTO_INCREMENT untuk tabel `detail_transaksi`
+-- AUTO_INCREMENT for table `detail_transaksi`
 --
 ALTER TABLE `detail_transaksi`
-  MODIFY `id_detail` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+  MODIFY `id_detail` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 
 --
--- AUTO_INCREMENT untuk tabel `diskon`
+-- AUTO_INCREMENT for table `diskon`
 --
 ALTER TABLE `diskon`
   MODIFY `id_diskon` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
--- AUTO_INCREMENT untuk tabel `kategori`
+-- AUTO_INCREMENT for table `kain`
+--
+ALTER TABLE `kain`
+  MODIFY `id_kain` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+
+--
+-- AUTO_INCREMENT for table `kategori`
 --
 ALTER TABLE `kategori`
   MODIFY `id_kategori` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
--- AUTO_INCREMENT untuk tabel `produk`
+-- AUTO_INCREMENT for table `pengembalian`
+--
+ALTER TABLE `pengembalian`
+  MODIFY `id_return` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT for table `produk`
 --
 ALTER TABLE `produk`
   MODIFY `id_produk` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
--- AUTO_INCREMENT untuk tabel `size`
+-- AUTO_INCREMENT for table `size`
 --
 ALTER TABLE `size`
   MODIFY `id_size` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
--- AUTO_INCREMENT untuk tabel `user`
+-- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
   MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;

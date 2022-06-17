@@ -28,6 +28,7 @@ class mStatusOrder extends CI_Model
         $this->db->select('*');
         $this->db->from('transaksi');
         $this->db->join('custom', 'transaksi.id_transaksi = custom.id_transaksi', 'left');
+        $this->db->join('kain', 'kain.id_kain = custom.id_kain', 'left');
         $this->db->where('transaksi.id_transaksi', $id);
         return $this->db->get()->row();
     }

@@ -77,7 +77,8 @@
                                 <input type="text" value="<?= set_value('nama') ?>" name="nama" class="form-control" placeholder="Masukkan Nama Produk">
                                 <?= form_error('nama', '<small class="text-danger pl-3">', '</small>'); ?>
                             </div>
-                        </div> <label for="inputPassword" class="col-sm-5 col-form-label">Kategori Produk</label>
+                        </div>
+                        <label for="inputPassword" class="col-sm-5 col-form-label">Kategori Produk</label>
                         <div class="col-sm-12">
                             <select class="form-control" name="kategori">
                                 <option value="">---Pilih Kategori Produk---</option>
