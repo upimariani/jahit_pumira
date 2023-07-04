@@ -15,6 +15,7 @@
                         <th>Products</th>
                         <th>Price</th>
                         <th>Quantity</th>
+                        <th>Stok</th>
                         <th>Total</th>
                         <th>Remove</th>
                     </tr>
@@ -43,6 +44,7 @@
                                     </div>
                                 </div>
                             </td>
+                            <td><?= $value['stok'] ?></td>
                             <td class="align-middle">Rp. <?= number_format($value['price'] * $value["qty"])  ?></td>
                             <td class="align-middle"><a href="<?= base_url('pelanggan/katalog/delete/' . $value['rowid']) ?>" class="btn btn-sm btn-primary"><i class="fa fa-times"></i></a>
 
