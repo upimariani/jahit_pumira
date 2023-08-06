@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 16 Okt 2022 pada 14.52
+-- Waktu pembuatan: 04 Jul 2023 pada 05.51
 -- Versi server: 10.4.24-MariaDB
 -- Versi PHP: 7.4.29
 
@@ -50,9 +50,17 @@ CREATE TABLE `custom` (
   `pjng_lengan` varchar(10) NOT NULL,
   `bahu` varchar(10) NOT NULL,
   `pundak` varchar(10) NOT NULL,
+  `pinggang` varchar(5) NOT NULL,
   `gambar_model` varchar(125) NOT NULL,
   `qty_custom` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data untuk tabel `custom`
+--
+
+INSERT INTO `custom` (`id_custom`, `id_kain`, `id_transaksi`, `pjng_baju`, `pjng_lengan`, `bahu`, `pundak`, `pinggang`, `gambar_model`, `qty_custom`) VALUES
+(1, 5, '20230704I5IJL2JR', '12', '23', '23', '67', '12', 'Screenshot_2022-06-10_1906492.png', 2);
 
 -- --------------------------------------------------------
 
@@ -276,6 +284,13 @@ CREATE TABLE `transaksi` (
   `type_transaksi` int(11) NOT NULL DEFAULT 1
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Dumping data untuk tabel `transaksi`
+--
+
+INSERT INTO `transaksi` (`id_transaksi`, `id_customer`, `tgl_transaksi`, `alamat`, `provinsi`, `kota`, `ekspedisi`, `estimasi`, `ongkir`, `status_order`, `status_pesan`, `update_at`, `total_bayar`, `bukti_pembayaran`, `type_transaksi`) VALUES
+('20230704I5IJL2JR', 4, '2023-07-04', 'cvfgf', 'Kalimantan Timur', 'Kutai Timur', 'jne', '5-7 Hari', '84000', 0, 1, '2023-07-04 03:45:26', '300000', NULL, 1);
+
 -- --------------------------------------------------------
 
 --
@@ -390,7 +405,7 @@ ALTER TABLE `chatting`
 -- AUTO_INCREMENT untuk tabel `custom`
 --
 ALTER TABLE `custom`
-  MODIFY `id_custom` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_custom` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT untuk tabel `customer`
